@@ -8,6 +8,7 @@
   align-items: center;
   max-width: 498px;
   height: 498px;
+  padding-top: 0;
 }
 
 .modal__content_type_image {
@@ -21,7 +22,6 @@
   flex-direction: column;
   width: 100%;
   row-gap: 12px;
-
 }
 
 .modal__caption {
@@ -31,7 +31,7 @@
 }
 
 .modal__weather {
-    margin: 0;
+  margin: 0;
 }
 
 .modal__close {

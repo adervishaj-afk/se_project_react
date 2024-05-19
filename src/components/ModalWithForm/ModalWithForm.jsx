@@ -5,8 +5,19 @@ function ModalWithForm({
   buttonText,
   title,
   activeModal,
-  onClose,
+  onClose, //onSubmit
 }) {
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   const formData = new FormData(event.target);
+  //   const newCard = {
+  //     name: formData.get("name"),
+  //     imageUrl: formData.get("imageUrl"),
+  //     weather: formData.get("weather"),
+  //   };
+  //   onSubmit(newCard);
+  // };
+
   return (
     <div className={`modal ${activeModal === "add-garment" && "modal_opened"}`}>
       <div className="modal__content">
@@ -15,10 +26,10 @@ function ModalWithForm({
           onClick={onClose}
           type="button"
           className="modal__close"
+        ></button>
+        <form
+          className="modal__form" //onSubmit={handleSubmit}
         >
-          CLOSE
-        </button>
-        <form className="modal__form">
           {children}
           <button type="submit" className="modal__submit">
             {buttonText}
