@@ -1,16 +1,27 @@
 .card {
   position: relative;
   width: 323px;
+  height: 326px;
   display: flex;
   justify-content: center;
+  border-width: 1px;
+  border-color: #E9E9E9;
 }
+
 
 .card__name {
   position: absolute;
   top: 15px;
+  background-color: #FFFFFF;
+  width: 91px;
+  height: 24px;
   margin: 0;
+  border-radius: 4%;
+  padding: 2px 12px 2px 12px;
+
 }
 
 .card__image {
   width: 100%;
+  border-radius: 5%;
 }
