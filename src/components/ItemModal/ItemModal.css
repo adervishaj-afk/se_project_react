@@ -31,7 +31,7 @@
 }
 
 .modal__weather {
-  margin: 0;
+  margin: 0 0 32px 0;
 }
 
 .modal__close {
