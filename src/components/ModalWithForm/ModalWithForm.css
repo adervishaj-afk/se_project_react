@@ -89,6 +89,8 @@
   height: 36px;
   width: 124px;
   border-radius: 4px;
-  
-  
+}
+
+.modal__submit:hover {
+  opacity: 0.6;
 }
