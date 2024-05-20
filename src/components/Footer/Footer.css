@@ -1,0 +1,18 @@
+.footer {
+  width: 100%;
+  background-color: white;
+  padding: 1em 0;
+  position: relative;
+  margin-top: 85px;
+}
+
+.footer__copyright {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.footer__author,
+.footer__date {
+  color: black;
+}
