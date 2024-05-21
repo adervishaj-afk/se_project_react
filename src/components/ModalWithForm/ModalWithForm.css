@@ -21,13 +21,12 @@
   margin-bottom: 24px;
 }
 
-.modal__close {
-  background-color: lightgray;
+.modal__form-close {
   padding: 0;
   position: absolute;
   right: 20px;
   top: 20px;
-  background-image: url("../../assets/close-button-gray.svg") 0.5;
+  background-image: url("../../assets/close-button-gray.svg");
   height: 20px;
   width: 20px;
   border: none;

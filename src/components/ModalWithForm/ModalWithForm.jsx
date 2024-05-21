@@ -26,7 +26,7 @@ function ModalWithForm({
         <button
           onClick={onClose}
           type="button"
-          className="modal__close"
+          className="modal__form-close"
         ></button>
         <form
           className="modal__form" //onSubmit={handleSubmit}

@@ -34,7 +34,7 @@
   margin: 0 0 32px 0;
 }
 
-.modal__close {
+.modal__item-close {
   background-color: transparent;
   position: absolute;
   right: 20px;
