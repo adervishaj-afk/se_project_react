@@ -12,10 +12,16 @@
   margin: 0;
 }
 
+.header__add {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
 .header__add-clothes-button {
   background-color: transparent;
   border: none;
-  margin: 0 20px 0 auto;
+  margin: 0 20px 0 0;
 }
 
 .header__add-clothes-button:hover {

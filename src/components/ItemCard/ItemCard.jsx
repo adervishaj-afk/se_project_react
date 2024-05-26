@@ -1,14 +1,24 @@
 import "./ItemCard.css";
 
-function ItemCard({ item, onCardClick }) {
+function ItemCard({ item, onCardClick, onCardDelete }) {
   const handleCardClick = (e) => {
     e.preventDefault();
     onCardClick(item);
   };
 
+  const handleCardDelete = (e) => {
+    e.preventDefault();
+    onCardDelete(item);
+  };
+
   return (
     <li className="card">
       <h2 className="card__name">{item.name}</h2>
+      <button 
+        type = "button"
+        className="card__delete-button"
+        onClick={handleCardDelete}
+        />
       <img
         onClick={handleCardClick}
         className="card__image"
