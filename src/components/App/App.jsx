@@ -5,9 +5,10 @@ import Main from "../Main/Main";
 import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
 import ItemModal from "../ItemModal/ItemModal.jsx";
 import Footer from "../Footer/Footer.jsx";
-import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
+import { getWeather, filterWeatherData, parseWeatherData } from "../../utils/weatherApi.js";
 import { coordinates, APIkey } from "../../utils/constants.js";
 import {CurrentTemperatureUnitContext} from "../../contexts/CurrentTemperatureUnitContext.js";
+
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -38,6 +39,7 @@ function App() {
       .then((data) => {
         const filteredData = filterWeatherData(data);
         setWeatherData(filteredData);
+        setTemp(weatherData.temp)
       })
       .catch(console.error);
   }, []);
