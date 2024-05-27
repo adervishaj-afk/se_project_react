@@ -15,6 +15,8 @@ import { coordinates, APIkey } from "../../utils/constants.js";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext.js";
 import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 import Profile from "../Profile/Profile.jsx";
+import { defaultClothingItems } from "../../utils/constants.js";
+import { api } from "../../utils/api.js";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -24,8 +26,9 @@ function App() {
   });
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
-  const [temp, setTemp] = useState(0);
+  //const [temp, setTemp] = useState(0);
   const [currentTempUnit, setCurrentTempUnit] = useState("F");
+  const [clothingItems, setClothingItems] = useState([]);
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -40,19 +43,37 @@ function App() {
     setActiveModal("");
   };
 
-  const onAddItem = (values) => {
-    console.log(values);
-  };
+  const onAddItem = ({ id: _id }) => {};
 
+  //API call to weather database to store weather data properties in an object
+  //Data is referenced by coordinates and special key accessed from
+  //Weather data website
   useEffect(() => {
     getWeather(coordinates, APIkey)
       .then((data) => {
         const filteredData = filterWeatherData(data);
         setWeatherData(filteredData);
-        setTemp(weatherData.temp);
+        //setTemp(weatherData.temp);
       })
       .catch(console.error);
   }, []);
+
+  //API call to get items from database and render them to the front-end
+  useEffect(() => {
+    api
+      .getItems()
+      .then((data) => {
+        console.log(data);
+        setClothingItems(data);
+      })
+      .catch(console.error);
+  }, []);
+
+  //NEEDS WORK / IMPLEMENT API CALL
+  // const handleDeleteCard = ({ _id }) => {
+  //   const updatedList = clothingItems.find({ _id });
+  //   setClothingItems(updatedList);
+  // };
 
   const handleToggleSwitchChange = () => {
     if (currentTempUnit === "C") setCurrentTempUnit("F");
@@ -74,10 +95,15 @@ function App() {
                 <Main
                   weatherData={weatherData}
                   handleCardClick={handleCardClick}
+                  handleDeleteCard={handleDeleteCard}
+                  clothingItems={clothingItems}
                 />
               }
             />
-            <Route path="/profile" element={<Profile />} />
+            <Route
+              path="/profile"
+              element={<Profile handleCardClick={handleCardClick} />}
+            />
           </Routes>
 
           <Footer />

@@ -21,12 +21,12 @@ export const weatherOptions = [
   },
   {
     day: true,
-    condition: "fog",
+    condition: "mist" || "fog",
     url: new URL("../assets/day/fog-day.svg", import.meta.url).href,
   },
   {
     day: false,
-    condition: "fog",
+    condition: "mist" || "fog",
     url: new URL("../assets/night/fog-night.svg", import.meta.url).href,
   },
   {

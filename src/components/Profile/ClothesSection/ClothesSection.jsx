@@ -1,22 +1,22 @@
 import { defaultClothingItems } from "../../../utils/constants";
 import ItemCard from "../../ItemCard/ItemCard";
+import "./ClothesSection.css";
 
 
-const ClothesSection = () => {
+const ClothesSection = ({handleCardClick}) => {
     return (
-      <div className="Clothes-section">
+      <div className="clothes-section">
         <div>
             <p>YOUR ITEMS</p>
             <button>Add New +</button>
         </div>
-        <ul className="cards__list">
+        <ul className="clothes-section__items">
           {defaultClothingItems
             .map((item, index) => (
               <ItemCard
                 key={item._id || index}
                 item={item}
-                //TO DO -- Pass as prop 
-                // onCardClick={handleCardClick}
+                handleCardClick={handleCardClick}
               />
             ))}
         </ul>

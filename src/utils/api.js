@@ -1,10 +1,10 @@
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = "http://localhost:3001";
 
 const handleServerResponse = (res) => {
   return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
 };
 
-const getItemList = () => {
+const getItems = () => {
   return fetch(`${BASE_URL}/items`, {
     headers: {
       "Content-Type": "application/json",
@@ -35,8 +35,8 @@ const removeItem = (id) => {
   }).then(handleServerResponse);
 };
 
-const api = {
-  getItemList,
+export const api = {
+  getItems,
   addItem,
   removeItem,
 };

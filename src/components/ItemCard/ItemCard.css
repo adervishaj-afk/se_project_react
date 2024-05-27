@@ -28,6 +28,7 @@
   width: 20px;
   top: 5px;
   right: 20px;
+  cursor: pointer;
 }
 
 .card__image {

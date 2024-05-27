@@ -8,16 +8,16 @@ function WeatherCard({ weatherData }) {
       option.condition === weatherData.condition
     );
   });
-console.log(weatherData)
+  console.log(weatherData);
   let weatherOption;
   if (dailyForcast) {
-    weatherOption = weatherOptions[weatherData.isDay ? "day" : "night"];
+    weatherOption = dailyForcast;
   } else {
-    weatherOption = defaultWeatherOptions
+    weatherOption = defaultWeatherOptions;
   }
 
-  // console.log(weatherData)
-  console.log(weatherOption)
+  // console.log(dailyForcast)
+  // console.log(dailyForcast[weatherData.isDay ? "day" : "night"])
   return (
     <section className="weather-card">
       <p className="weather-card__temp">{weatherData.temp.F}°F</p>

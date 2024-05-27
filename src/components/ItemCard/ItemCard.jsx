@@ -1,6 +1,6 @@
 import "./ItemCard.css";
 
-function ItemCard({ item, onCardClick, onCardDelete }) {
+function ItemCard({ item, onCardClick, handleDeleteCard }) {
   const handleCardClick = (e) => {
     e.preventDefault();
     console.log(item)
@@ -9,7 +9,7 @@ function ItemCard({ item, onCardClick, onCardDelete }) {
 
   const handleCardDelete = (e) => {
     e.preventDefault();
-    onCardDelete(item);
+    handleDeleteCard(item);
   };
 
   return (
