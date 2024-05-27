@@ -3,6 +3,7 @@ import "./ItemCard.css";
 function ItemCard({ item, onCardClick, onCardDelete }) {
   const handleCardClick = (e) => {
     e.preventDefault();
+    console.log(item)
     onCardClick(item);
   };
 
