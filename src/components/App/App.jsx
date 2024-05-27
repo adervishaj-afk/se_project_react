@@ -72,15 +72,15 @@ function App() {
           />
           <Footer />
         </div>
-        {activeModal === "create" && (
+        {activeModal === "add-garment" && (
           <AddItemModal
             closeActiveModal={closeActiveModal}
-            isOpen={activeModal === "create"}
+            isOpen={activeModal === "add-garment"}
             onAddItem={onAddItem}
           />
         )}
         <ItemModal
-          activeModal={activeModal}
+          activeModal={"add-garment"}
           card={selectedCard}
           onClose={closeActiveModal}
         />
