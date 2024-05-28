@@ -5,7 +5,7 @@ import { defaultClothingItems } from "../../utils/constants.js";
 import ItemCard from "../ItemCard/ItemCard.jsx";
 import {CurrentTemperatureUnitContext} from "../../contexts/CurrentTemperatureUnitContext.js";
 
-function Main({ weatherData, handleCardClick, clothingItems, handleDeleteCard }) {
+function Main({ weatherData, handleCardClick, clothingItems, onAddItem, handleDeleteCard }) {
   const { currentTempUnit } = useContext(CurrentTemperatureUnitContext);
   console.log(currentTempUnit)
   const weatherType = useMemo(() => {
@@ -34,6 +34,7 @@ function Main({ weatherData, handleCardClick, clothingItems, handleDeleteCard })
                 item={item}
                 onCardClick={handleCardClick}
                 handleDeleteCard={handleDeleteCard}
+                onAddItem={onAddItem}
               />
             ))}
         </ul>

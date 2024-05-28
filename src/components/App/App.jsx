@@ -43,8 +43,6 @@ function App() {
     setActiveModal("");
   };
 
-  const onAddItem = ({ id: _id }) => {};
-
   //API call to weather database to store weather data properties in an object
   //Data is referenced by coordinates and special key accessed from
   //Weather data website
@@ -69,11 +67,25 @@ function App() {
       .catch(console.error);
   }, []);
 
+  console.log(clothingItems);
+
   //NEEDS WORK / IMPLEMENT API CALL
-  // const handleDeleteCard = ({ _id }) => {
-  //   const updatedList = clothingItems.find({ _id });
-  //   setClothingItems(updatedList);
-  // };
+  const onAddItem = ({name, imageUrl, weather}) => {
+    api
+      .addItem((newItem) => {
+      setClothingItems(newItem, ...clothingItems)
+      })
+      .then(() => {
+        console.log();
+      })
+      .catch(console.error);
+      closeActiveModal();
+  };
+
+  const handleDeleteCard = ({ _id }) => {
+    const updatedList = clothingItems.find({ _id });
+    setClothingItems(updatedList);
+  };
 
   const handleToggleSwitchChange = () => {
     if (currentTempUnit === "C") setCurrentTempUnit("F");
@@ -97,6 +109,7 @@ function App() {
                   handleCardClick={handleCardClick}
                   handleDeleteCard={handleDeleteCard}
                   clothingItems={clothingItems}
+                  onAddItem={onAddItem}
                 />
               }
             />
