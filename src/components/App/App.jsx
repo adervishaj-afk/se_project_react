@@ -70,16 +70,17 @@ function App() {
   console.log(clothingItems);
 
   //NEEDS WORK / IMPLEMENT API CALL
-  const onAddItem = ({name, imageUrl, weather}) => {
+  const onAddItem = ({ name, imageUrl, weather }) => {
+    // next option: replace object properties with item
     api
       .addItem((newItem) => {
-      setClothingItems(newItem, ...clothingItems)
+        setClothingItems(newItem, ...clothingItems);
       })
       .then(() => {
         console.log();
       })
       .catch(console.error);
-      closeActiveModal();
+    closeActiveModal();
   };
 
   const handleDeleteCard = ({ _id }) => {

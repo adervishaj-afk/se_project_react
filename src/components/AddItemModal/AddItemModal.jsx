@@ -17,12 +17,12 @@ const AddItemModal = ({ closeActiveModal, onAddItem, isOpen }) => {
   const [temp, setTemp] = useState("");
   const handleTempChange = (e) => {
     //console.log(e.target.value);
-    setTemp(e.target.value)
-  }
+    setTemp(e.target.value);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAddItem({ name, imageUrl: link, weather: temp});
+    onAddItem(name, link, temp);
   };
 
   return (
@@ -67,6 +67,7 @@ const AddItemModal = ({ closeActiveModal, onAddItem, isOpen }) => {
             id="hot"
             name="weather"
             value="hot"
+            onChange={handleTempChange}
             required
           />
           Hot
@@ -78,6 +79,7 @@ const AddItemModal = ({ closeActiveModal, onAddItem, isOpen }) => {
             id="warm"
             name="weather"
             value="warm"
+            onChange={handleTempChange}
             required
           />
           Warm
@@ -89,6 +91,7 @@ const AddItemModal = ({ closeActiveModal, onAddItem, isOpen }) => {
             id="cold"
             name="weather"
             value="cold"
+            onChange={handleTempChange}
             required
           />
           Cold
