@@ -61,31 +61,34 @@ function App() {
     api
       .getItems()
       .then((data) => {
-        console.log(data);
+        //console.log(data);
         setClothingItems(data);
       })
       .catch(console.error);
   }, []);
 
-  console.log(clothingItems);
+  //console.log(clothingItems);
 
   //NEEDS WORK / IMPLEMENT API CALL
-  const onAddItem = ({ name, imageUrl, weather }) => {
+  const onAddItem = (itemData) => {
     // next option: replace object properties with item
     api
-      .addItem((newItem) => {
-        setClothingItems(newItem, ...clothingItems);
-      })
-      .then(() => {
-        console.log();
+      .addItem(itemData)
+      .then((newItem) => {
+        setClothingItems([newItem, ...clothingItems]);
       })
       .catch(console.error);
     closeActiveModal();
   };
 
-  const handleDeleteCard = ({ _id }) => {
-    const updatedList = clothingItems.find({ _id });
-    setClothingItems(updatedList);
+  const handleDeleteCard = (item) => {
+    //const updatedList = clothingItems.find({_id });
+    api.removeItem(item)
+      .then((item) => {
+        selectedCard.remove(item._id);
+      })
+      .catch(console.error);
+    //setClothingItems(updatedList);
   };
 
   const handleToggleSwitchChange = () => {

@@ -1,13 +1,13 @@
 import "./ItemCard.css";
 
-function ItemCard({ item, onCardClick, onAddItem, handleDeleteCard }) {
+function ItemCard({ item, onCardClick, handleDeleteCard }) {
   const handleCardClick = (e) => {
     e.preventDefault();
-    console.log(item);
+    //console.log(item);
     onCardClick(item);
   };
 
-  const handleCardDelete = (e) => {
+  const deleteCard = (e) => {
     e.preventDefault();
     handleDeleteCard(item);
   };
@@ -18,8 +18,7 @@ function ItemCard({ item, onCardClick, onAddItem, handleDeleteCard }) {
       <button
         type="button"
         className="card__delete-button"
-        onClick={handleCardDelete}
-        onAddItem={onAddItem}
+        onClick={deleteCard}
       />
       <img
         onClick={handleCardClick}

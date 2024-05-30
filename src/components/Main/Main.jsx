@@ -3,11 +3,18 @@ import "./Main.css";
 import WeatherCard from "../WeatherCard/WeatherCard";
 import { defaultClothingItems } from "../../utils/constants.js";
 import ItemCard from "../ItemCard/ItemCard.jsx";
-import {CurrentTemperatureUnitContext} from "../../contexts/CurrentTemperatureUnitContext.js";
+import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext.js";
 
-function Main({ weatherData, handleCardClick, clothingItems, onAddItem, handleDeleteCard }) {
+function Main({
+  weatherData,
+  handleCardClick,
+  clothingItems,
+  onAddItem,
+  handleDeleteCard,
+}) {
   const { currentTempUnit } = useContext(CurrentTemperatureUnitContext);
-  console.log(currentTempUnit)
+  //console.log(currentTempUnit)
+  console.log(clothingItems);
   const weatherType = useMemo(() => {
     if (weatherData.temp > 86) {
       return "hot";
@@ -27,7 +34,7 @@ function Main({ weatherData, handleCardClick, clothingItems, onAddItem, handleDe
         </p>
         <ul className="cards__list">
           {clothingItems //clothingItems from API call from getItems
-            .filter((item) => item.weather === weatherType)
+            //.filter((item) => item.weather === weatherType)
             .map((item, index) => (
               <ItemCard
                 key={item._id || index}

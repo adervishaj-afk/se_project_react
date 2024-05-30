@@ -8,7 +8,7 @@ function WeatherCard({ weatherData }) {
       option.condition === weatherData.condition
     );
   });
-  console.log(weatherData);
+  //console.log(weatherData);
   let weatherOption;
   if (dailyForcast) {
     weatherOption = dailyForcast;
