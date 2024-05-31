@@ -6,25 +6,28 @@ import ItemCard from "../ItemCard/ItemCard.jsx";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext.js";
 
 function Main({
+  weatherOption,
   weatherData,
   handleCardClick,
-  clothingItems,
+  clothingItems, 
   onAddItem,
   handleDeleteCard,
 }) {
   const { currentTempUnit } = useContext(CurrentTemperatureUnitContext);
-  //console.log(currentTempUnit)
+  console.log(currentTempUnit)
   console.log(clothingItems);
   const weatherType = useMemo(() => {
-    if (weatherData.temp > 86) {
+    //debugger;
+    if (weatherData.temp.F > 86) {
       return "hot";
-    } else if (weatherData.temp >= 66 && weatherData.temp < 86) {
+    } else if (weatherData.temp.F >= 66 && weatherData.temp.F < 86) {
       return "warm";
     } else {
       return "cold";
     }
-  }, [weatherData.temp]);
+  }, [weatherData.temp.F]);
 
+  console.log({weatherType});
   return (
     <main>
       <WeatherCard weatherData={weatherData} />
@@ -33,11 +36,10 @@ function Main({
           Today is {weatherData.temp.F}°F / You may want to wear:
         </p>
         <ul className="cards__list">
-          {clothingItems //clothingItems from API call from getItems
-            //.filter((item) => item.weather === weatherType)
-            .map((item, index) => (
+          {clothingItems.filter((item) => item.weather && item.weather.toLowerCase() === weatherType.toLowerCase())
+            .map((item) => (
               <ItemCard
-                key={item._id || index}
+                key={item._id}
                 item={item}
                 onCardClick={handleCardClick}
                 handleDeleteCard={handleDeleteCard}

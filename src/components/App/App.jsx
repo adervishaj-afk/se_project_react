@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import Header from "../Header/Header.jsx";
 import Main from "../Main/Main";
-import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
+//import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
 import ItemModal from "../ItemModal/ItemModal.jsx";
 import Footer from "../Footer/Footer.jsx";
 import {
@@ -15,7 +15,7 @@ import { coordinates, APIkey } from "../../utils/constants.js";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext.js";
 import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 import Profile from "../Profile/Profile.jsx";
-import { defaultClothingItems } from "../../utils/constants.js";
+//import { defaultClothingItems } from "../../utils/constants.js";
 import { api } from "../../utils/api.js";
 
 function App() {
@@ -67,11 +67,8 @@ function App() {
       .catch(console.error);
   }, []);
 
-  //console.log(clothingItems);
-
   //NEEDS WORK / IMPLEMENT API CALL
   const onAddItem = (itemData) => {
-    // next option: replace object properties with item
     api
       .addItem(itemData)
       .then((newItem) => {
@@ -81,14 +78,15 @@ function App() {
     closeActiveModal();
   };
 
-  const handleDeleteCard = (item) => {
-    //const updatedList = clothingItems.find({_id });
-    api.removeItem(item)
-      .then((item) => {
-        selectedCard.remove(item._id);
+  const handleDeleteCard = (card) => {
+    api
+      .removeItem(card.id)
+      .then(() => {
+        setClothingItems((clothingItems) =>
+          clothingItems.filter((card) => card.id !== card.id)
+        );
       })
       .catch(console.error);
-    //setClothingItems(updatedList);
   };
 
   const handleToggleSwitchChange = () => {
@@ -119,7 +117,14 @@ function App() {
             />
             <Route
               path="/profile"
-              element={<Profile handleCardClick={handleCardClick} />}
+              element={
+                <Profile
+                  clothingItems={clothingItems}
+                  handleCardClick={handleCardClick}
+                  handleDeleteCard={handleDeleteCard}
+                  onAddItem={onAddItem}
+                />
+              }
             />
           </Routes>
 
