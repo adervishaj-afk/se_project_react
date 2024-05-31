@@ -9,6 +9,7 @@ function ItemCard({ item, onCardClick, handleDeleteCard }) {
 
   const deleteCard = (e) => {
     e.preventDefault();
+    debugger
     handleDeleteCard(item);
   };
 

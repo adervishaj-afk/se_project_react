@@ -3,7 +3,6 @@ import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import Header from "../Header/Header.jsx";
 import Main from "../Main/Main";
-//import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
 import ItemModal from "../ItemModal/ItemModal.jsx";
 import Footer from "../Footer/Footer.jsx";
 import {
@@ -15,8 +14,10 @@ import { coordinates, APIkey } from "../../utils/constants.js";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext.js";
 import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 import Profile from "../Profile/Profile.jsx";
-//import { defaultClothingItems } from "../../utils/constants.js";
 import { api } from "../../utils/api.js";
+//----------------------------------------------------------------//
+//                        IMPORTS                                 //
+//----------------------------------------------------------------//
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -26,7 +27,6 @@ function App() {
   });
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
-  //const [temp, setTemp] = useState(0);
   const [currentTempUnit, setCurrentTempUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
 
@@ -78,12 +78,12 @@ function App() {
     closeActiveModal();
   };
 
-  const handleDeleteCard = (card) => {
+  const handleDeleteCard = (selectedCard) => {
     api
-      .removeItem(card.id)
+      .removeItem(selectedCard._id)
       .then(() => {
         setClothingItems((clothingItems) =>
-          clothingItems.filter((card) => card.id !== card.id)
+          clothingItems.filter((card) => selectedCard._id !== card._id)
         );
       })
       .catch(console.error);

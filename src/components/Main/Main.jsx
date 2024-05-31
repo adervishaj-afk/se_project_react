@@ -6,7 +6,6 @@ import ItemCard from "../ItemCard/ItemCard.jsx";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext.js";
 
 function Main({
-  weatherOption,
   weatherData,
   handleCardClick,
   clothingItems, 
