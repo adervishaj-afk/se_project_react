@@ -8,7 +8,7 @@ function Main({
   weatherTemp,
   weatherData,
   handleCardClick,
-  clothingItems, 
+  clothingItems,
   onAddItem,
   handleDeleteCard,
 }) {
@@ -27,13 +27,16 @@ function Main({
 
   return (
     <main>
-      <WeatherCard weatherData={weatherData} weatherTemp = {temp} />
+      <WeatherCard weatherData={weatherData} weatherTemp={temp} />
       <section className="cards">
-        <p className="card__text">
-          Today is {temp}°F / You may want to wear:
-        </p>
+        <p className="card__text">Today is {temp}°F / You may want to wear:</p>
         <ul className="cards__list">
-          {clothingItems.filter((item) => item.weather && item.weather.toLowerCase() === weatherType.toLowerCase())
+          {clothingItems
+            .filter(
+              (item) =>
+                item.weather &&
+                item.weather.toLowerCase() === weatherType.toLowerCase()
+            )
             .map((item) => (
               <ItemCard
                 key={item._id}

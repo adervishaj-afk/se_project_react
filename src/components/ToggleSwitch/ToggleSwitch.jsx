@@ -8,10 +8,6 @@ const ToggleSwitch = () => {
     CurrentTemperatureUnitContext
   );
 
-  const toggleUnit = () => {
-    const newUnit = currentTempUnit === "F" ? "C" : "F";
-    handleToggleSwitchChange(newUnit);
-  };
 
   return (
     <div className="toggle-switch">
@@ -20,7 +16,7 @@ const ToggleSwitch = () => {
           className="toggle-switch__checkbox"
           type="checkbox"
           name="toggle-switch-checkbox"
-          onChange={toggleUnit}
+          onChange={handleToggleSwitchChange}
         ></input>
         <span
           className={
