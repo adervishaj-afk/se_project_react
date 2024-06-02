@@ -29,6 +29,7 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTempUnit, setCurrentTempUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
+  const [temp, setTemp] = useState(0);
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -51,7 +52,6 @@ function App() {
       .then((data) => {
         const filteredData = filterWeatherData(data);
         setWeatherData(filteredData);
-        //setTemp(weatherData.temp);
       })
       .catch(console.error);
   }, []);
@@ -94,19 +94,29 @@ function App() {
     if (currentTempUnit === "F") setCurrentTempUnit("C");
   };
 
+  useEffect(() => {
+    getWeather(coordinates, APIkey)
+      .then((data) => { 
+        const temperature = parseWeatherData(data);
+        setTemp(temperature)
+      })
+  }, [])
+
+
   return (
     <div className="page">
       <CurrentTemperatureUnitContext.Provider
         value={{ currentTempUnit, handleToggleSwitchChange }}
       >
         <div className="page__content">
-          <Header handleAddClick={handleAddClick} weatherData={weatherData} />
+          <Header handleAddClick={handleAddClick} temp = {temp} weatherData={weatherData} />
           <Routes>
             <Route
               exact
               path="/"
               element={
                 <Main
+                weatherTemp = {temp}
                   weatherData={weatherData}
                   handleCardClick={handleCardClick}
                   handleDeleteCard={handleDeleteCard}

@@ -1,7 +1,7 @@
 import "./WeatherCard.css";
 import { weatherOptions, defaultWeatherOptions } from "../../utils/constants";
 
-function WeatherCard({ weatherData }) {
+function WeatherCard({ weatherData, weatherTemp }) {
   const dailyForcast = weatherOptions.find((option) => {
     return (
       option.day === weatherData.isDay &&
@@ -20,7 +20,7 @@ function WeatherCard({ weatherData }) {
   // console.log(dailyForcast[weatherData.isDay ? "day" : "night"])
   return (
     <section className="weather-card">
-      <p className="weather-card__temp">{weatherData.temp.F}°F</p>
+      <p className="weather-card__temp">{weatherTemp}°F</p>
       <img
         src={weatherOption?.url}
         alt={`Card showing ${

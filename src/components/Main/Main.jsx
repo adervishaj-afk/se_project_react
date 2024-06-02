@@ -1,11 +1,11 @@
 import { useMemo, useContext } from "react";
 import "./Main.css";
 import WeatherCard from "../WeatherCard/WeatherCard";
-import { defaultClothingItems } from "../../utils/constants.js";
 import ItemCard from "../ItemCard/ItemCard.jsx";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext.js";
 
 function Main({
+  weatherTemp,
   weatherData,
   handleCardClick,
   clothingItems, 
@@ -13,26 +13,24 @@ function Main({
   handleDeleteCard,
 }) {
   const { currentTempUnit } = useContext(CurrentTemperatureUnitContext);
-  console.log(currentTempUnit)
-  console.log(clothingItems);
+  const temp = weatherTemp?.temperature?.[currentTempUnit] || 999;
+
   const weatherType = useMemo(() => {
-    //debugger;
-    if (weatherData.temp.F > 86) {
+    if (temp > 86) {
       return "hot";
-    } else if (weatherData.temp.F >= 66 && weatherData.temp.F < 86) {
+    } else if (temp >= 66 && temp < 86) {
       return "warm";
     } else {
       return "cold";
     }
-  }, [weatherData.temp.F]);
+  }, [weatherTemp]);
 
-  console.log({weatherType});
   return (
     <main>
-      <WeatherCard weatherData={weatherData} />
+      <WeatherCard weatherData={weatherData} weatherTemp = {temp} />
       <section className="cards">
         <p className="card__text">
-          Today is {weatherData.temp.F}°F / You may want to wear:
+          Today is {temp}°F / You may want to wear:
         </p>
         <ul className="cards__list">
           {clothingItems.filter((item) => item.weather && item.weather.toLowerCase() === weatherType.toLowerCase())

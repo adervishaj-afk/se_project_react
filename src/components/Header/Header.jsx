@@ -4,7 +4,7 @@ import logo from "../../assets/logo.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch.jsx";
 import { Link } from "react-router-dom";
 
-function Header({ handleAddClick, weatherData }) {
+function Header({ handleAddClick, weatherData}) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
