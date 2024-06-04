@@ -124,6 +124,7 @@ function App() {
                   handleDeleteCard={handleDeleteCard}
                   clothingItems={clothingItems}
                   onAddItem={onAddItem}
+                  closeActiveModal = {closeActiveModal}
                 />
               }
             />
@@ -137,6 +138,7 @@ function App() {
                   handleCardClick={handleCardClick}
                   handleDeleteCard={handleDeleteCard}
                   onAddItem={onAddItem}
+                  closeActiveModal = {closeActiveModal}
                 />
               }
             />

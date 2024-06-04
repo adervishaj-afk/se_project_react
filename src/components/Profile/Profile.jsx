@@ -14,11 +14,11 @@ const Profile = ({
     <div className="profile">
       <section className="profile__sidebar">
         <img src="" alt="" />
-        <p className="profile__name">Terrence Tegegne</p>
+        <p className="profile__name"></p>
         <Sidebar />
       </section>
       <section className="profile-clothes">
-        <ClothesSection handleCardClick={handleCardClick} />
+        <ClothesSection handleCardClick={handleCardClick} handleDeleteCard={handleDeleteCard} />
       </section>
     </div>
   );

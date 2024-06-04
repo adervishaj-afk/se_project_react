@@ -5,18 +5,17 @@
   justify-content: space-between;
 }
 
-/* .profile-clothes{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  max-width: 1015px;
-  width: 100%;
-} */
+.profile__sidebar {
+  height: 56px;
+  margin-right: 100px;
+  margin-bottom: auto;
+}
 
 .profile-avatar {
-
+  margin-right: 16px;
 }
 
 .profile__name {
-
+  line-height: 25px;
+  margin: 0;
 }
