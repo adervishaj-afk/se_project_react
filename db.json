@@ -7,12 +7,6 @@
       "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Beanie.png?etag=bc10497cc80fa557f036e94f9999f7b2"
     },
     {
-      "_id": 1,
-      "name": "Boot",
-      "weather": "cold",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Boot.png?etag=0953a2ea59f1c6ebc832fabacdc9c70e"
-    },
-    {
       "_id": 2,
       "name": "Cap",
       "weather": "hot",
@@ -113,6 +107,24 @@
     {
       "name": "",
       "_id": 19
+    },
+    {
+      "name": "qgrth",
+      "weather": "cold",
+      "imageUrl": "https://up.yimg.com/ib/th?id=OIP.EQYPYeoSCb3ockAzz2PhvwHaHa&pid=Api&rs=1&c=1&qlt=95&w=124&h=124",
+      "_id": 20
+    },
+    {
+      "name": "rterg",
+      "weather": "cold",
+      "imageUrl": "https://up.yimg.com/ib/th?id=OIP.vSNzz5ovCtvZ2d0lt98zVwHaHa&pid=Api&rs=1&c=1&qlt=95&w=97&h=97",
+      "_id": 21
+    },
+    {
+      "name": "t34ht",
+      "weather": "warm",
+      "imageUrl": "https://up.yimg.com/ib/th?id=OIP.Eoy0sAsCWWbi8WQ6EwPKGgHaE8&pid=Api&rs=1&c=1&qlt=95&w=150&h=100",
+      "_id": 22
     }
   ]
 }

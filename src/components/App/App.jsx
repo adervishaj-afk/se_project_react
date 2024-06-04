@@ -95,13 +95,11 @@ function App() {
   };
 
   useEffect(() => {
-    getWeather(coordinates, APIkey)
-      .then((data) => { 
-        const temperature = parseWeatherData(data);
-        setTemp(temperature)
-      })
-  }, [])
-
+    getWeather(coordinates, APIkey).then((data) => {
+      const temperature = parseWeatherData(data);
+      setTemp(temperature);
+    });
+  }, []);
 
   return (
     <div className="page">
@@ -109,14 +107,18 @@ function App() {
         value={{ currentTempUnit, handleToggleSwitchChange }}
       >
         <div className="page__content">
-          <Header handleAddClick={handleAddClick} temp = {temp} weatherData={weatherData} />
+          <Header
+            handleAddClick={handleAddClick}
+            temp={temp}
+            weatherData={weatherData}
+          />
           <Routes>
             <Route
               exact
               path="/"
               element={
                 <Main
-                weatherTemp = {temp}
+                  weatherTemp={temp}
                   weatherData={weatherData}
                   handleCardClick={handleCardClick}
                   handleDeleteCard={handleDeleteCard}
@@ -129,6 +131,8 @@ function App() {
               path="/profile"
               element={
                 <Profile
+                  weatherTemp={temp}
+                  weatherData={weatherData}
                   clothingItems={clothingItems}
                   handleCardClick={handleCardClick}
                   handleDeleteCard={handleDeleteCard}

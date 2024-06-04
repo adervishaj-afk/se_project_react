@@ -6,9 +6,9 @@ import "./ClothesSection.css";
 const ClothesSection = ({handleCardClick}) => {
     return (
       <div className="clothes-section">
-        <div>
-            <p>YOUR ITEMS</p>
-            <button>Add New +</button>
+        <div className="clothes-section__features">
+            <p className="clothes-section__title">YOUR ITEMS</p>
+            <button className="clothes__button">+ Add New</button>
         </div>
         <ul className="clothes-section__items">
           {defaultClothingItems

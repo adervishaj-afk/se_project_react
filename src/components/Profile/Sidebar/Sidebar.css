@@ -1,0 +1,8 @@
+.Sidebar{
+    display: flex;
+}
+
+.profile__sidebar{
+    max-width: 350px;
+    width: 100%;
+}

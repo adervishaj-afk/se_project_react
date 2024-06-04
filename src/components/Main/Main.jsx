@@ -43,7 +43,6 @@ function Main({
                 item={item}
                 onCardClick={handleCardClick}
                 handleDeleteCard={handleDeleteCard}
-                onAddItem={onAddItem}
               />
             ))}
         </ul>
