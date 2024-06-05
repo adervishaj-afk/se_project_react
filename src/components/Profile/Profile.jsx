@@ -1,6 +1,7 @@
 import "./Profile.css";
-import Sidebar from "./Sidebar/Sidebar";
+import SideBar from "../SideBar/SideBar.jsx";
 import ClothesSection from "./ClothesSection/ClothesSection";
+import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext.js";
 
 const Profile = ({
   weatherTemp,
@@ -15,7 +16,7 @@ const Profile = ({
       <section className="profile__sidebar">
         <img src="" alt="" />
         <p className="profile__name"></p>
-        <Sidebar />
+        <SideBar />
       </section>
       <section className="profile-clothes">
         <ClothesSection handleCardClick={handleCardClick} handleDeleteCard={handleDeleteCard} />
