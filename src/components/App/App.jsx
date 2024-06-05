@@ -27,7 +27,7 @@ function App() {
   });
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
-  const [currentTempUnit, setCurrentTempUnit] = useState("F");
+  const [currentTemperatureUnit, setCurrentTempUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
   const [temp, setTemp] = useState(0);
 
@@ -90,8 +90,8 @@ function App() {
   };
 
   const handleToggleSwitchChange = () => {
-    if (currentTempUnit === "C") setCurrentTempUnit("F");
-    if (currentTempUnit === "F") setCurrentTempUnit("C");
+    if (currentTemperatureUnit === "C") setCurrentTempUnit("F");
+    if (currentTemperatureUnit === "F") setCurrentTempUnit("C");
   };
 
   useEffect(() => {
@@ -104,7 +104,7 @@ function App() {
   return (
     <div className="page">
       <CurrentTemperatureUnitContext.Provider
-        value={{ currentTempUnit, handleToggleSwitchChange }}
+        value={{ currentTemperatureUnit, handleToggleSwitchChange }}
       >
         <div className="page__content">
           <Header

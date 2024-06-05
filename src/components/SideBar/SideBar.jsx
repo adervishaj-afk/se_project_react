@@ -1,7 +1,7 @@
 import "./SideBar.css";
 import avatar from "../../assets/avatar.svg";
 
-const Sidebar = () => {
+const SideBar = () => {
   return (
     <div className="sidebar">
       <img className="sidebar__avatar" src={avatar} alt="profile-avatar" />
@@ -10,4 +10,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default SideBar;

@@ -12,8 +12,8 @@ function Main({
   onAddItem,
   handleDeleteCard,
 }) {
-  const { currentTempUnit } = useContext(CurrentTemperatureUnitContext);
-  const temp = weatherTemp?.temperature?.[currentTempUnit] || 999;
+  const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
+  const temp = weatherTemp?.temperature?.[currentTemperatureUnit] || 999;
 
   const weatherType = useMemo(() => {
     if (temp > 86) {

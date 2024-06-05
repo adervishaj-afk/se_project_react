@@ -6,7 +6,7 @@ import { useContext } from "react";
 function WeatherCard({ weatherData, weatherTemp }) {
 
   // subscribe to context
-  const { currentTempUnit } = useContext(CurrentTemperatureUnitContext);
+  const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   
   const dailyForcast = weatherOptions.find((option) => {
     return (
@@ -26,7 +26,7 @@ function WeatherCard({ weatherData, weatherTemp }) {
   // console.log(dailyForcast[weatherData.isDay ? "day" : "night"])
   return (
     <section className="weather-card">
-      <p className="weather-card__temp">{weatherTemp}°{currentTempUnit}</p>
+      <p className="weather-card__temp">{weatherTemp}°{currentTemperatureUnit}</p>
       <img
         src={weatherOption?.url}
         alt={`Card showing ${
