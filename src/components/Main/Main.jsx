@@ -29,7 +29,9 @@ function Main({
     <main>
       <WeatherCard weatherData={weatherData} weatherTemp={temp} />
       <section className="cards">
-        <p className="card__text">Today is {temp}°F / You may want to wear:</p>
+        <p className="card__text">
+          Today is {temp}°{currentTemperatureUnit} / You may want to wear:
+        </p>
         <ul className="cards__list">
           {clothingItems
             .filter(

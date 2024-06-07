@@ -40,6 +40,11 @@ function App() {
     setActiveModal("add-garment");
   };
 
+  const confirmDeleteModal = () => {
+    setActiveModal("confirm-delete");
+    selectedCard(card);
+  };
+
   const closeActiveModal = () => {
     setActiveModal("");
   };
@@ -158,6 +163,16 @@ function App() {
             activeModal={"preview"}
             card={selectedCard}
             onClose={closeActiveModal}
+            handleDeleteCard={handleDeleteCard}
+            confirmDeleteModal={confirmDeleteModal}
+          />
+        )}
+        {activeModal === "confirm-delete" && (
+          <ConfirmDeleteModal
+            card={selectedCard}
+            onClose={closeActiveModal}
+            handleDeleteCard={handleDeleteCard}
+            confirmDeleteModal={confirmDeleteModal}
           />
         )}
       </CurrentTemperatureUnitContext.Provider>

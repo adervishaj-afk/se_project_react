@@ -10,7 +10,9 @@ const Profile = ({
   handleCardClick,
   handleDeleteCard,
   onAddItem,
+
 }) => {
+
   return (
     <div className="profile">
       <section className="profile__sidebar">

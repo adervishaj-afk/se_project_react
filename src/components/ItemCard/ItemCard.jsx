@@ -1,6 +1,6 @@
 import "./ItemCard.css";
 
-function ItemCard({ item, onCardClick, handleDeleteCard }) {
+function ItemCard({ item, onCardClick, handleDeleteCard, confirmDeleteClick, activeModal }) {
   const handleCardClick = (e) => {
     e.preventDefault();
     //console.log(item);
@@ -9,18 +9,17 @@ function ItemCard({ item, onCardClick, handleDeleteCard }) {
 
   const deleteCard = (e) => {
     e.preventDefault();
-    debugger
     handleDeleteCard(item);
   };
 
   return (
     <li className="card">
       <h2 className="card__name">{item.name}</h2>
-      <button
+      {/* <button
         type="button"
         className="card__delete-button"
         onClick={deleteCard}
-      />
+      /> */}
       <img
         onClick={handleCardClick}
         className="card__image"

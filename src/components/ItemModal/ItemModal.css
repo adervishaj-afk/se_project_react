@@ -18,6 +18,7 @@
 }
 
 .modal__footer {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -47,4 +48,18 @@
   background-repeat: no-repeat;
   color: black;
   cursor: pointer;
+}
+
+.delete-card {
+  font-size: 20px;
+  line-height: 24px;
+  position: absolute;
+  top: 25%;
+  left: 75%;
+  border: none;
+  background-color: transparent;
+}
+
+.delete-card:hover {
+  opacity: 0.6;
 }
