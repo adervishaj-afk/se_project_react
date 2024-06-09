@@ -24,6 +24,7 @@ const Profile = ({
         <ClothesSection
           handleCardClick={handleCardClick}
           handleDeleteCard={handleDeleteCard}
+          clothingItems={clothingItems}
         />
       </section>
     </div>

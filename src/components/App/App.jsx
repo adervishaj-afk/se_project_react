@@ -13,6 +13,7 @@ import {
 import { coordinates, APIkey } from "../../utils/constants.js";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext.js";
 import AddItemModal from "../AddItemModal/AddItemModal.jsx";
+import ConfirmDeleteModal from "../ConfirmDeleteModal/ConfirmDeleteModal.jsx";
 import Profile from "../Profile/Profile.jsx";
 import { api } from "../../utils/api.js";
 //----------------------------------------------------------------//
@@ -42,7 +43,6 @@ function App() {
 
   const confirmDeleteModal = () => {
     setActiveModal("confirm-delete");
-    selectedCard(card);
   };
 
   const closeActiveModal = () => {
@@ -84,14 +84,16 @@ function App() {
   };
 
   const handleDeleteCard = (selectedCard) => {
-    api
-      .removeItem(selectedCard._id)
-      .then(() => {
-        setClothingItems((clothingItems) =>
-          clothingItems.filter((card) => selectedCard._id !== card._id)
-        );
-      })
-      .catch(console.error);
+    //setActiveModal("confirm-delete");
+
+    // api
+    //   .removeItem(selectedCard._id)
+    //   .then(() => {
+    //     setClothingItems((clothingItems) =>
+    //       clothingItems.filter((card) => selectedCard._id !== card._id)
+    //     );
+    //   })
+    // .catch(console.error);
   };
 
   const handleToggleSwitchChange = () => {
@@ -169,9 +171,10 @@ function App() {
         )}
         {activeModal === "confirm-delete" && (
           <ConfirmDeleteModal
+            isOpen={activeModal === "confirm-delete"}
             card={selectedCard}
             onClose={closeActiveModal}
-            handleDeleteCard={handleDeleteCard}
+            // handleDeleteCard={handleDeleteCard}
             confirmDeleteModal={confirmDeleteModal}
           />
         )}

@@ -1,11 +1,11 @@
 import "./ItemModal.css";
 import { useState } from "react";
 
-function ItemModal({ activeModal, onClose, card }) {
+function ItemModal({ activeModal, onClose, card, handleDeleteCard, confirmDeleteModal, isOpen }) {
   //console.log(card)
 
-  const [showConfirmation, setShowConfirmation] = useState(false);
-  
+  // const [showConfirmation, setShowConfirmation] = useState(false);
+
 
   // const deleteCard = (e) => {
   //   e.preventDefault();
@@ -25,7 +25,7 @@ function ItemModal({ activeModal, onClose, card }) {
           <h2 className="modal__caption">{card.name}</h2>
           <p className="modal__weather">Weather: {card.weather}</p>
           <button type="button"
-        //onClick={deleteCard}
+        onClick={confirmDeleteModal}
         className="delete-card">Delete Card</button>
         </div>
       </div>

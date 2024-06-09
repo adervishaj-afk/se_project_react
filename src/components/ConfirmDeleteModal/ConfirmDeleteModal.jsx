@@ -16,12 +16,11 @@ function ConfirmDeleteModal({
 
   return (
     <div className={`modal ${isOpen && "modal_opened"}`}>
-      <div className="modal__content-form">
-        <h2 className="modal__title">{title}</h2>
+      <div className="confirm-delete-modal">
         <button
           onClick={confirmModalClick}
           type="button"
-          className="modal__form-close"
+          className="confirm-delete-modal__close"
         ></button>
       </div>
     </div>
