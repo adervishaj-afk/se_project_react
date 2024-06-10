@@ -10,6 +10,7 @@ const Profile = ({
   handleCardClick,
   handleDeleteCard,
   onAddItem,
+  handleAddClick,
 
 }) => {
 
@@ -25,6 +26,7 @@ const Profile = ({
           handleCardClick={handleCardClick}
           handleDeleteCard={handleDeleteCard}
           clothingItems={clothingItems}
+          handleAddClick={handleAddClick}
         />
       </section>
     </div>

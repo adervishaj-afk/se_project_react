@@ -8,7 +8,7 @@ function ConfirmDeleteModal({
   confirmDeleteModal,
   card,
 }) {
-  const closeConfirmModal = (e) => {
+  const closeConfirmModal = () => {
     closeActiveModal();
   };
 
@@ -21,9 +21,20 @@ function ConfirmDeleteModal({
   return (
     <div className={`modal ${isOpen && "modal_opened"}`}>
       <div className="confirm-delete-modal">
+        <button
+          onClick={closeActiveModal}
+          type="button"
+          className="confirm-delete-modal__close-btn"
+        ></button>
         <div className="confirm-delete-modal__desc">
-          <p>Are you sure you want to delete this item?</p>
-          <p>This action is irreversible</p>
+          <p>
+            <span className="confirm-delete-modal__prompt">
+              Are you sure you want to delete this item?
+            </span>
+            <span className="confirm-delete-modal__prompt">
+              This action is irreversible
+            </span>
+          </p>
           <button
             onClick={deleteCard}
             type="submit"
@@ -31,7 +42,13 @@ function ConfirmDeleteModal({
           >
             Yes, delete item
           </button>
-          <button type="button">Cancel</button>
+          <button
+            onClick={closeActiveModal}
+            className="confirm-delete-modal__cancel"
+            type="button"
+          >
+            Cancel
+          </button>
         </div>
       </div>
     </div>

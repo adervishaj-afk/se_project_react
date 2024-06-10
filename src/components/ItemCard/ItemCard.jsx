@@ -15,11 +15,6 @@ function ItemCard({ item, onCardClick, handleDeleteCard, confirmDeleteClick, act
   return (
     <li className="card">
       <h2 className="card__name">{item.name}</h2>
-      {/* <button
-        type="button"
-        className="card__delete-button"
-        onClick={deleteCard}
-      /> */}
       <img
         onClick={handleCardClick}
         className="card__image"

@@ -144,6 +144,7 @@ function App() {
                   handleDeleteCard={handleDeleteCard}
                   onAddItem={onAddItem}
                   closeActiveModal={closeActiveModal}
+                  handleAddClick={handleAddClick}
                 />
               }
             />
