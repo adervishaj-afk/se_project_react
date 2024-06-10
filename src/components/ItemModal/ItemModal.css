@@ -11,10 +11,10 @@
   padding-top: 0;
 }
 
-.modal__content_type_image {
-  object-fit: cover;
-  width: 100%;
-  height: auto;
+
+.modal__image {
+  height: 498px;
+  width: 498px;
 }
 
 .modal__footer {
