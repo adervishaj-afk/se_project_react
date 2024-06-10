@@ -1,27 +1,38 @@
 import "./ConfirmDeleteModal.css";
 
 function ConfirmDeleteModal({
-  activeModal,
-  onClose,
+  closeActiveModal,
   isOpen,
   onSubmit,
   handleDeleteCard,
   confirmDeleteModal,
+  card,
 }) {
-  const confirmModalClick = (e) => {
+  const closeConfirmModal = (e) => {
+    closeActiveModal();
+  };
+
+  const deleteCard = (e) => {
     e.preventDefault();
-    //console.log(item);
-    confirmDeleteModal(item);
+    handleDeleteCard(card);
+    closeConfirmModal();
   };
 
   return (
     <div className={`modal ${isOpen && "modal_opened"}`}>
       <div className="confirm-delete-modal">
-        <button
-          onClick={confirmModalClick}
-          type="button"
-          className="confirm-delete-modal__close"
-        ></button>
+        <div className="confirm-delete-modal__desc">
+          <p>Are you sure you want to delete this item?</p>
+          <p>This action is irreversible</p>
+          <button
+            onClick={deleteCard}
+            type="submit"
+            className="confirm-delete-modal__close"
+          >
+            Yes, delete item
+          </button>
+          <button type="button">Cancel</button>
+        </div>
       </div>
     </div>
   );

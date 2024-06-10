@@ -84,16 +84,14 @@ function App() {
   };
 
   const handleDeleteCard = (selectedCard) => {
-    //setActiveModal("confirm-delete");
-
-    // api
-    //   .removeItem(selectedCard._id)
-    //   .then(() => {
-    //     setClothingItems((clothingItems) =>
-    //       clothingItems.filter((card) => selectedCard._id !== card._id)
-    //     );
-    //   })
-    // .catch(console.error);
+    api
+      .removeItem(selectedCard._id)
+      .then(() => {
+        setClothingItems((clothingItems) =>
+          clothingItems.filter((card) => selectedCard._id !== card._id)
+        );
+      })
+    .catch(console.error);
   };
 
   const handleToggleSwitchChange = () => {
@@ -173,9 +171,9 @@ function App() {
           <ConfirmDeleteModal
             isOpen={activeModal === "confirm-delete"}
             card={selectedCard}
-            onClose={closeActiveModal}
-            // handleDeleteCard={handleDeleteCard}
+            closeActiveModal={closeActiveModal}
             confirmDeleteModal={confirmDeleteModal}
+            handleDeleteCard={handleDeleteCard}
           />
         )}
       </CurrentTemperatureUnitContext.Provider>

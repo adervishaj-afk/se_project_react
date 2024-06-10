@@ -1,17 +1,14 @@
 import "./ItemModal.css";
 import { useState } from "react";
 
-function ItemModal({ activeModal, onClose, card, handleDeleteCard, confirmDeleteModal, isOpen }) {
-  //console.log(card)
-
-  // const [showConfirmation, setShowConfirmation] = useState(false);
-
-
-  // const deleteCard = (e) => {
-  //   e.preventDefault();
-  //   handleDeleteCard(item);
-  // };
-
+function ItemModal({
+  activeModal,
+  onClose,
+  card,
+  handleDeleteCard,
+  confirmDeleteModal,
+  isOpen,
+}) {
   return (
     <div className={`modal ${activeModal === "preview" && "modal_opened"}`}>
       <div className="modal__content-items modal__content_type_image">
@@ -24,9 +21,13 @@ function ItemModal({ activeModal, onClose, card, handleDeleteCard, confirmDelete
         <div className="modal__footer">
           <h2 className="modal__caption">{card.name}</h2>
           <p className="modal__weather">Weather: {card.weather}</p>
-          <button type="button"
-        onClick={confirmDeleteModal}
-        className="delete-card">Delete Card</button>
+          <button
+            type="button"
+            onClick={confirmDeleteModal}
+            className="delete-card"
+          >
+            Delete Card
+          </button>
         </div>
       </div>
     </div>
