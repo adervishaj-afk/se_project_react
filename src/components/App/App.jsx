@@ -57,6 +57,8 @@ function App() {
       .then((data) => {
         const filteredData = filterWeatherData(data);
         setWeatherData(filteredData);
+        const temperature = parseWeatherData(data);
+        setTemp(temperature);
       })
       .catch(console.error);
   }, []);
@@ -72,15 +74,14 @@ function App() {
       .catch(console.error);
   }, []);
 
-  //NEEDS WORK / IMPLEMENT API CALL
   const onAddItem = (itemData) => {
     api
       .addItem(itemData)
       .then((newItem) => {
         setClothingItems([newItem, ...clothingItems]);
+        closeActiveModal();
       })
       .catch(console.error);
-    closeActiveModal();
   };
 
   const handleDeleteCard = (selectedCard) => {
@@ -90,21 +91,15 @@ function App() {
         setClothingItems((clothingItems) =>
           clothingItems.filter((card) => selectedCard._id !== card._id)
         );
+        closeActiveModal();
       })
-    .catch(console.error);
+      .catch(console.error);
   };
 
   const handleToggleSwitchChange = () => {
     if (currentTemperatureUnit === "C") setCurrentTempUnit("F");
     if (currentTemperatureUnit === "F") setCurrentTempUnit("C");
   };
-
-  useEffect(() => {
-    getWeather(coordinates, APIkey).then((data) => {
-      const temperature = parseWeatherData(data);
-      setTemp(temperature);
-    });
-  }, []);
 
   return (
     <div className="page">

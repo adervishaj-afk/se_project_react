@@ -8,14 +8,14 @@ function ConfirmDeleteModal({
   confirmDeleteModal,
   card,
 }) {
-  const closeConfirmModal = () => {
-    closeActiveModal();
-  };
+  //   const closeConfirmModal = () => {
+  //     closeActiveModal();
+  //   };
 
   const deleteCard = (e) => {
     e.preventDefault();
     handleDeleteCard(card);
-    closeConfirmModal();
+    // closeConfirmModal();
   };
 
   return (
