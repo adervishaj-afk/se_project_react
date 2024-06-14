@@ -14,16 +14,6 @@ function Main({
 }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   const temp = weatherTemp?.temperature?.[currentTemperatureUnit] || 999;
-  
-  const weatherType = useMemo(() => {
-    if (temp > 86) {
-      return "hot";
-    } else if (temp >= 66 && temp < 86) {
-      return "warm";
-    } else {
-      return "cold";
-    }
-  }, [weatherTemp]);
 
   return (
     <main>
@@ -37,7 +27,7 @@ function Main({
             .filter(
               (item) =>
                 item.weather &&
-                item.weather.toLowerCase() === weatherType.toLowerCase()
+                item.weather.toLowerCase() === weatherData.type.toLowerCase()
             )
             .map((item) => (
               <ItemCard

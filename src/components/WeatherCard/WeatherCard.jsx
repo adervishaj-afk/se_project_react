@@ -19,7 +19,7 @@ function WeatherCard({ weatherData, weatherTemp }) {
   if (dailyForcast) {
     weatherOption = dailyForcast;
   } else {
-    weatherOption = defaultWeatherOptions;
+    weatherOption = weatherData.isDay ? defaultWeatherOptions.day : defaultWeatherOptions.night;
   }
 
   // console.log(dailyForcast)
