@@ -1,6 +1,13 @@
 import "./ItemCard.css";
 
-function ItemCard({ item, onCardClick, handleDeleteCard, confirmDeleteClick, activeModal }) {
+function ItemCard({
+  item,
+  onCardClick,
+  handleDeleteCard,
+  confirmDeleteClick,
+  activeModal,
+  onCardLike,
+}) {
   const handleCardClick = (e) => {
     e.preventDefault();
     onCardClick(item);
@@ -10,6 +17,13 @@ function ItemCard({ item, onCardClick, handleDeleteCard, confirmDeleteClick, act
     e.preventDefault();
     handleDeleteCard(item);
   };
+
+  // Check if the item was liked by the current user
+  // The likes array should be an array of ids
+  const isLiked = item.likes.some((id) => id === currentUser._id);
+
+  // Create a variable which you then set in `className` for the like button
+  const itemLikeButtonClassName = `...`;
 
   return (
     <li className="card">

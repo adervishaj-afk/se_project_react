@@ -1,13 +1,19 @@
 import { defaultClothingItems } from "../../../utils/constants";
 import ItemCard from "../../ItemCard/ItemCard";
 import "./ClothesSection.css";
+import React, { useContext } from "react";
+import { CurrentUserContext } from "../../../contexts/CurrentUserContext";
 
 const ClothesSection = ({
   handleCardClick,
   handleDeleteCard,
   clothingItems,
   handleAddClick,
+  onCardLike
 }) => {
+
+  const currentUser = useContext(CurrentUserContext);
+
   return (
     <div className="clothes-section">
       <div className="clothes-section__features">
@@ -27,6 +33,7 @@ const ClothesSection = ({
             item={item}
             onCardClick={handleCardClick}
             handleDeleteCard={handleDeleteCard}
+            onCardLike={onCardLike}
           />
         ))}
       </ul>

@@ -11,9 +11,9 @@ const Profile = ({
   handleDeleteCard,
   onAddItem,
   handleAddClick,
-
+  userData,
+  onCardLike,
 }) => {
-
   return (
     <div className="profile">
       <section className="profile__sidebar">
@@ -27,6 +27,7 @@ const Profile = ({
           handleDeleteCard={handleDeleteCard}
           clothingItems={clothingItems}
           handleAddClick={handleAddClick}
+          onCardLike={onCardLike}
         />
       </section>
     </div>
