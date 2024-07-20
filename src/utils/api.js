@@ -12,7 +12,7 @@ const getItems = () => {
   }).then(handleServerResponse);
 };
 
-const addItem = ({ name, weather, imageUrl }) => {
+const addItem = ({ name, weather, imageUrl }, token) => {
   return fetch(`${BASE_URL}/items`, {
     method: "POST",
     headers: {
@@ -22,12 +22,13 @@ const addItem = ({ name, weather, imageUrl }) => {
       name,
       weather,
       imageUrl,
-    }),
+    },
+  token),
     Authorization: `Bearer ${token}`,
   }).then(handleServerResponse);
 };
 
-const removeItem = (id) => {
+const removeItem = (id, token) => {
   return fetch(`${BASE_URL}/items/${id}`, {
     method: "DELETE",
     headers: {

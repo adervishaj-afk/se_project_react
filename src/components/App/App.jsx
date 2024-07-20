@@ -79,7 +79,7 @@ function App() {
         // data to state, and navigate them to /profile.
         setIsLoggedIn(true);
         setUserData({ username, email });
-        navigate("/profile");
+        navigate("/signin");
       })
       .catch(console.error);
   }, []);
@@ -88,7 +88,8 @@ function App() {
     api
       .signup(username, avatar, email, password)
       .then(() => {
-        navigate("/signin");
+        handleLogin({ username, password });
+        // navigate("/profile");
       })
       .catch(console.error);
   };
@@ -102,19 +103,27 @@ function App() {
     api
       .signin(username, password)
       .then((data) => {
-        if (data.jwt) {
-          setToken(data.jwt);
+        if (data.token) {
+          setToken(data.token);
           setUserData(data.user);
           setIsLoggedIn(true);
-          navigate("/signin");
+          navigate("/profile");
         }
+      })
+      .then((data) => {
+        getUserData(data);
       })
       .catch(console.error);
   };
 
+  const getUserData = (data) => {
+    api.getUserInfo(data.token);
+  };
+
   const handleLogout = () => {
     setIsLoggedIn(false);
-    setCurrentUser(null);
+    setUserData(null);
+    navigate("");
   };
 
   const handleCardClick = (card) => {
@@ -168,8 +177,11 @@ function App() {
   }, []);
 
   const onAddItem = (itemData) => {
+    const token = getToken();
+    if (!token) return;
+
     api
-      .addItem(itemData)
+      .addItem({ itemData }, token)
       .then((newItem) => {
         setClothingItems([newItem, ...clothingItems]);
         closeActiveModal();
@@ -178,8 +190,11 @@ function App() {
   };
 
   const handleDeleteCard = (selectedCard) => {
+    const token = getToken();
+    if (!token) return;
+
     api
-      .removeItem(selectedCard._id)
+      .removeItem(selectedCard._id, token)
       .then(() => {
         setClothingItems((clothingItems) =>
           clothingItems.filter((card) => selectedCard._id !== card._id)
@@ -208,6 +223,7 @@ function App() {
               handleSignUp={handleSignUp}
               handleSignIn={handleSignIn}
               isLoggedIn={isLoggedIn}
+              handleLogout={handleLogout}
             />
             <Routes>
               <Route

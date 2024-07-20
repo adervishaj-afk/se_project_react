@@ -11,10 +11,9 @@ function Header({
   weatherData,
   handleSignUp,
   handleSignIn,
-  handleLogOut,
+  handleLogout,
   isLoggedIn,
 }) {
-
   const currentUser = useContext(CurrentUserContext);
 
   const currentDate = new Date().toLocaleString("default", {
@@ -42,7 +41,7 @@ function Header({
             >
               +Add Clothes
             </button>
-            <button onClick={handleLogOut} className="header__button">
+            <button onClick={handleLogout} className="header__button">
               Logout
             </button>
             <Link to="/profile" className="header__link">
