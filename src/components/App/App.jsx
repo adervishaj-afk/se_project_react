@@ -72,16 +72,7 @@ function App() {
     if (!jwt) {
       return;
     }
-    api
-      .getUserInfo(jwt)
-      .then(({ username, email }) => {
-        // If the response is successful, log the user in, save their
-        // data to state, and navigate them to /profile.
-        setIsLoggedIn(true);
-        setUserData({ username, email });
-        navigate("/signin");
-      })
-      .catch(console.error);
+    handleUserInfo();
   }, []);
 
   const handleRegistration = ({ username, avatar, email, password }) => {
@@ -115,6 +106,20 @@ function App() {
       })
       .catch(console.error);
   };
+
+  const handleUserInfo = () => {
+    api
+      .getUserInfo()
+      .then((data) => {
+        setIsLoggedIn(true);
+        setUserData({ username: data.username, email: data.email });
+        navigate("/profile");
+      })
+      .then((data) => {
+        getUserData(data);
+      })
+      .catch(console.error);
+  }
 
   const getUserData = (data) => {
     api.getUserInfo(data.token);
