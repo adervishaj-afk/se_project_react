@@ -73,14 +73,15 @@ function App() {
       return;
     }
     handleUserInfo();
-  }, []);
+  }, [isLoggedIn]);
 
   const handleRegistration = ({ username, avatar, email, password }) => {
     api
       .signup(username, avatar, email, password)
-      .then(() => {
-        handleLogin({ username, password });
+      .then((data) => {
+        handleLogin({ username: data.username, password: data.password });
         // navigate("/profile");
+        // setActiveModal("sign-in")
       })
       .catch(console.error);
   };
@@ -101,9 +102,9 @@ function App() {
           navigate("/profile");
         }
       })
-      .then((data) => {
-        getUserData(data);
-      })
+      // .then((data) => {
+      //   getUserData(data);
+      // })
       .catch(console.error);
   };
 
@@ -112,14 +113,14 @@ function App() {
       .getUserInfo()
       .then((data) => {
         setIsLoggedIn(true);
-        setUserData({ username: data.username, email: data.email });
+        //setUserData({ name: data.username, email: data.email });
         navigate("/profile");
       })
       .then((data) => {
         getUserData(data);
       })
       .catch(console.error);
-  }
+  };
 
   const getUserData = (data) => {
     api.getUserInfo(data.token);

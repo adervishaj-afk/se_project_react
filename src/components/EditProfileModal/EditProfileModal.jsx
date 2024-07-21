@@ -1,14 +1,5 @@
-
+import "./EditProfileModal.css";
 
 const EditProfileModal = ({}) => {
-
-
-
-
-
-    return (
-        <div>
-
-        </div>
-    )
-}
+  return <div></div>;
+};
