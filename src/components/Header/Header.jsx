@@ -2,7 +2,7 @@ import "./Header.css";
 import avatar from "../../assets/avatar.svg";
 import logo from "../../assets/logo.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch.jsx";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import React, { useContext } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
@@ -20,6 +20,7 @@ function Header({
     month: "long",
     day: "numeric",
   });
+
   return (
     <header className="header">
       <div>

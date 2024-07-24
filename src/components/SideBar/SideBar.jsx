@@ -9,7 +9,7 @@ const SideBar = () => {
   return (
     <div className="sidebar">
       <img className="sidebar__avatar" src={avatar} alt="profile-avatar" />
-      <p className="sidebar__username">Terrence Tagnege</p>
+      <p className="sidebar__username">Terrence Tegnene</p>
     </div>
   );
 };

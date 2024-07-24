@@ -18,8 +18,9 @@ import Profile from "../Profile/Profile.jsx";
 import { api } from "../../utils/api.js";
 import RegisterModal from "../ModalWithForm/RegisterModal/RegisterModal.jsx";
 import LoginModal from "../ModalWithForm/LoginModal/LoginModal.jsx";
-import { setToken, getToken } from "../../utils/token.js";
+import { setToken, getToken, removeToken } from "../../utils/token.js";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext.js";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.jsx";
 
 //----------------------------------------------------------------//
 //                        IMPORTS                                 //
@@ -41,47 +42,59 @@ function App() {
   const navigate = useNavigate();
   const [isLiked, setIsLiked] = useState(false);
 
-  const handleCardLike = ({ id, isLiked }) => {
-    const token = localStorage.getItem("jwt");
-    // Check if this card is not currently liked
-    !isLiked
-      ? // if so, send a request to add the user's id to the card's likes array
-        api
-          // the first argument is the card's id
-          .addCardLike(id, token)
-          .then((updatedCard) => {
-            setClothingItems((cards) =>
-              cards.map((item) => (item._id === id ? updatedCard : item))
-            );
-          })
-          .catch((err) => console.log(err))
-      : // if not, send a request to remove the user's id from the card's likes array
-        api
-          // the first argument is the card's id
-          .removeCardLike(id, token)
-          .then((updatedCard) => {
-            setClothingItems((cards) =>
-              cards.map((item) => (item._id === id ? updatedCard : item))
-            );
-          })
-          .catch((err) => console.log(err));
-  };
+  // const handleCardLike = ({ id, isLiked }) => {
+  //   const token = localStorage.getItem("jwt");
+  //   // Check if this card is not currently liked
+  //   !isLiked
+  //     ? // if so, send a request to add the user's id to the card's likes array
+  //       api
+  //         // the first argument is the card's id
+  //         .addCardLike(id, token)
+  //         .then((updatedCard) => {
+  //           setClothingItems((cards) =>
+  //             cards.map((item) => (item._id === id ? updatedCard : item))
+  //           );
+  //         })
+  //         .catch((err) => console.log(err))
+  //     : // if not, send a request to remove the user's id from the card's likes array
+  //       api
+  //         // the first argument is the card's id
+  //         .removeCardLike(id, token)
+  //         .then((updatedCard) => {
+  //           setClothingItems((cards) =>
+  //             cards.map((item) => (item._id === id ? updatedCard : item))
+  //           );
+  //         })
+  //         .catch((err) => console.log(err));
+  // };
 
   useEffect(() => {
-    const jwt = getToken();
-    if (!jwt) {
+    const token = getToken();
+
+    if (!token) {
       return;
     }
-    handleUserInfo();
-  }, [isLoggedIn]);
+
+    // Call the function, passing it the JWT.
+    api
+      .getUserInfo(token)
+      .then(({ username, email }) => {
+        // If the response is successful, log the user in, save their
+        // data to state, and navigate them to /profile.
+        setIsLoggedIn(true);
+        setUserData({ username, email });
+        navigate("/profile");
+      })
+      .catch(console.error);
+  }, []);
 
   const handleRegistration = ({ username, avatar, email, password }) => {
     api
       .signup(username, avatar, email, password)
-      .then((data) => {
-        handleLogin({ username: data.username, password: data.password });
-        // navigate("/profile");
-        // setActiveModal("sign-in")
+      .then(() => {
+        //handleLogin({ username: data.username, password: data.password });
+        //navigate("/profile");
+        setActiveModal("sign-in");
       })
       .catch(console.error);
   };
@@ -102,34 +115,31 @@ function App() {
           navigate("/profile");
         }
       })
-      // .then((data) => {
-      //   getUserData(data);
-      // })
       .catch(console.error);
   };
 
-  const handleUserInfo = () => {
-    api
-      .getUserInfo()
-      .then((data) => {
-        setIsLoggedIn(true);
-        //setUserData({ name: data.username, email: data.email });
-        navigate("/profile");
-      })
-      .then((data) => {
-        getUserData(data);
-      })
-      .catch(console.error);
-  };
+  // const handleUserInfo = () => {
+  //   api
+  //     .getUserInfo()
+  //     .then((data) => {
+  //       setIsLoggedIn(true);
+  //       //setUserData({ name: data.username, email: data.email });
+  //       navigate("/profile");
+  //     })
+  //     .then((data) => {
+  //       getUserData(data);
+  //     })
+  //     .catch(console.error);
+  // };
 
-  const getUserData = (data) => {
-    api.getUserInfo(data.token);
-  };
+  // const getUserData = (data) => {
+  //   api.getUserInfo(data.token);
+  // };
 
   const handleLogout = () => {
+    removeToken();
+    navigate("/");
     setIsLoggedIn(false);
-    setUserData(null);
-    navigate("");
   };
 
   const handleCardClick = (card) => {
@@ -236,6 +246,7 @@ function App() {
                 exact
                 path="/"
                 element={
+                  //<ProtectedRoute isLoggedIn={isLoggedIn}>
                   <Main
                     weatherTemp={temp}
                     weatherData={weatherData}
@@ -244,25 +255,34 @@ function App() {
                     clothingItems={clothingItems}
                     onAddItem={onAddItem}
                     closeActiveModal={closeActiveModal}
-                    onCardLike={handleCardLike}
+                    //onCardLike={handleCardLike}
                   />
+                  //</ProtectedRoute>
                 }
               />
               <Route
                 path="/profile"
                 element={
-                  <Profile
-                    userData={userData}
-                    weatherTemp={temp}
-                    weatherData={weatherData}
-                    clothingItems={clothingItems}
-                    handleCardClick={handleCardClick}
-                    handleDeleteCard={handleDeleteCard}
-                    onAddItem={onAddItem}
-                    closeActiveModal={closeActiveModal}
-                    handleAddClick={handleAddClick}
-                    onCardLike={handleCardLike}
-                  />
+                  <ProtectedRoute isLoggedIn={isLoggedIn}>
+                    <Profile
+                      userData={userData}
+                      weatherTemp={temp}
+                      weatherData={weatherData}
+                      clothingItems={clothingItems}
+                      handleCardClick={handleCardClick}
+                      handleDeleteCard={handleDeleteCard}
+                      onAddItem={onAddItem}
+                      closeActiveModal={closeActiveModal}
+                      handleAddClick={handleAddClick}
+                      //onCardLike={handleCardLike}
+                    />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="*"
+                element={
+                  isLoggedIn ? <Navigate to="/" /> : <Navigate to="/profile" />
                 }
               />
             </Routes>

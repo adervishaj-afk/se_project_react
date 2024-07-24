@@ -14,6 +14,7 @@ const Profile = ({
   userData,
   onCardLike,
 }) => {
+  //const { username, email } = userData;
   return (
     <div className="profile">
       <section className="profile__sidebar">
@@ -27,7 +28,7 @@ const Profile = ({
           handleDeleteCard={handleDeleteCard}
           clothingItems={clothingItems}
           handleAddClick={handleAddClick}
-          onCardLike={onCardLike}
+          //onCardLike={onCardLike}
         />
       </section>
     </div>

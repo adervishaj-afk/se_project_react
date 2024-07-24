@@ -12,7 +12,7 @@ const getItems = () => {
   }).then(handleServerResponse);
 };
 
-const addItem = ({ name, weather, imageUrl }, token) => {
+const addItem = ({ name, weather, imageUrl }) => {
   return fetch(`${BASE_URL}/items`, {
     method: "POST",
     headers: {
@@ -22,9 +22,8 @@ const addItem = ({ name, weather, imageUrl }, token) => {
       name,
       weather,
       imageUrl,
-    },
-  token),
-    Authorization: `Bearer ${token}`,
+    }),
+    //Authorization: `Bearer ${token}`,
   }).then(handleServerResponse);
 };
 
@@ -83,7 +82,7 @@ const addCardLike = ({ id, token }) => {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
+      //Authorization: `Bearer ${token}`,
     },
   }).then(handleServerResponse);
 };
@@ -94,7 +93,7 @@ const removeCardLike = ({ id, token }) => {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
+      //Authorization: `Bearer ${token}`,
     },
   }).then(handleServerResponse);
 };

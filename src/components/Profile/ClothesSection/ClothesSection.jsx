@@ -9,7 +9,7 @@ const ClothesSection = ({
   handleDeleteCard,
   clothingItems,
   handleAddClick,
-  onCardLike
+  //onCardLike
 }) => {
 
   const currentUser = useContext(CurrentUserContext);
@@ -33,7 +33,7 @@ const ClothesSection = ({
             item={item}
             onCardClick={handleCardClick}
             handleDeleteCard={handleDeleteCard}
-            onCardLike={onCardLike}
+            //onCardLike={onCardLike}
           />
         ))}
       </ul>
