@@ -13,7 +13,8 @@ const Profile = ({
   handleAddClick,
   userData,
   onCardLike,
-  handleEditProfile
+  handleEditProfile,
+  handleLogout
 }) => {
   //const { username, email } = userData;
   return (
@@ -23,6 +24,7 @@ const Profile = ({
         <p className="profile__name"></p> */}
         <SideBar 
         handleEditProfile={handleEditProfile}
+        handleLogout={handleLogout}
         />
       </section>
       <section className="profile-clothes">

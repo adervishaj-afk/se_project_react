@@ -29,3 +29,14 @@
 .sidebar__edit:hover {
   opacity: 0.6;
 }
+
+.sidebar__logout-button {
+  color: black;
+  margin-top: 10px;
+  background-color: transparent;
+  border: none;
+}
+
+.sidebar__logout-button:hover {
+  opacity: 0.6;
+}
