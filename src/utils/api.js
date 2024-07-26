@@ -12,18 +12,18 @@ const getItems = () => {
   }).then(handleServerResponse);
 };
 
-const addItem = ({ name, weather, imageUrl }) => {
+const addItem = ({ name, weather, imageUrl, token }) => {
   return fetch(`${BASE_URL}/items`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({
       name,
       weather,
       imageUrl,
     }),
-    //Authorization: `Bearer ${token}`,
   }).then(handleServerResponse);
 };
 
@@ -32,8 +32,8 @@ const removeItem = (id, token) => {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
     },
-    Authorization: `Bearer ${token}`,
   }).then(handleServerResponse);
 };
 
@@ -82,7 +82,7 @@ const addCardLike = ({ id, token }) => {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      //Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     },
   }).then(handleServerResponse);
 };
@@ -93,12 +93,23 @@ const removeCardLike = ({ id, token }) => {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      //Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     },
   }).then(handleServerResponse);
 };
 
-export const api = {
+const editProfile = (username, avatar, token) => {
+  return fetch(`${BASE_URL}/users/me`, {
+    method: "PATCH",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  }).then(handleServerResponse);
+}
+
+export const api = { 
   getItems,
   addItem,
   removeItem,
@@ -107,4 +118,5 @@ export const api = {
   getUserInfo,
   addCardLike,
   removeCardLike,
+  editProfile,
 };

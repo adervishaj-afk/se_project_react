@@ -1,3 +1,31 @@
 .sidebar {
   display: flex;
+  margin-top: 15px;
+  align-items: center;
+  flex-direction: column;
+}
+
+.sidebar__title {
+  display: flex;
+  align-items: center;
+}
+
+.sidebar__avatar {
+  margin-right: 16px;
+}
+
+.sidebar__username {
+  line-height: 25px;
+  margin: 0;
+}
+
+.sidebar__edit {
+  margin-top: 24px;
+  background-color: transparent;
+  width: auto;
+  border: none;
+}
+
+.sidebar__edit:hover {
+  opacity: 0.6;
 }

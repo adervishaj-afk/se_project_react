@@ -17,8 +17,8 @@ function ItemModal({
   const isOwn = card.owner === currentUser._id;
 
   // Creating a variable which you'll then set in `className` for the delete button
-  const itemDeleteButtonClassName = `item__delete-button ${
-    isOwn ? "item__delete-button_visible" : "item__delete-button_hidden"
+  const itemDeleteButtonClassName = `delete-card ${
+    isOwn ? "delete-card_visible" : "delete-card_hidden"
   }`;
 
   return (
@@ -33,13 +33,19 @@ function ItemModal({
         <div className="modal__footer">
           <h2 className="modal__caption">{card.name}</h2>
           <p className="modal__weather">Weather: {card.weather}</p>
+          {/* {currentUser ? (
+            <> */}
           <button
             type="button"
             onClick={confirmDeleteModal}
-            className="delete-card"
+            className="delete-card" //itemDeleteButtonClassName
           >
             Delete Card
           </button>
+          {/* </>
+          ) : (
+            <></>
+          )} */}
         </div>
       </div>
     </div>

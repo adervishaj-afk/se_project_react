@@ -13,14 +13,17 @@ const Profile = ({
   handleAddClick,
   userData,
   onCardLike,
+  handleEditProfile
 }) => {
   //const { username, email } = userData;
   return (
     <div className="profile">
       <section className="profile__sidebar">
-        <img src="" alt="" />
-        <p className="profile__name"></p>
-        <SideBar />
+        {/* <img src="" alt="" /> 
+        <p className="profile__name"></p> */}
+        <SideBar 
+        handleEditProfile={handleEditProfile}
+        />
       </section>
       <section className="profile-clothes">
         <ClothesSection

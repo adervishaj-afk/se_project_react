@@ -7,15 +7,8 @@
 
 .profile__sidebar {
   height: 56px;
-  margin-right: 100px;
-  margin-bottom: auto;
-}
-
-.profile-avatar {
-  margin-right: 16px;
-}
-
-.profile__name {
-  line-height: 25px;
-  margin: 0;
+  height: auto;
+  max-width: 200px;
+  width: 100%;
+  margin-right: 10px;
 }

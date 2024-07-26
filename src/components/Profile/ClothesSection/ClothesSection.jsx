@@ -11,7 +11,6 @@ const ClothesSection = ({
   handleAddClick,
   //onCardLike
 }) => {
-
   const currentUser = useContext(CurrentUserContext);
 
   return (
@@ -26,10 +25,12 @@ const ClothesSection = ({
           + Add New
         </button>
       </div>
+
+      {/* {currentUser ? ( */}
       <ul className="clothes-section__items">
         {clothingItems.map((item, index) => (
           <ItemCard
-            key={item._id}
+            key={item._id || index}
             item={item}
             onCardClick={handleCardClick}
             handleDeleteCard={handleDeleteCard}
@@ -37,6 +38,9 @@ const ClothesSection = ({
           />
         ))}
       </ul>
+      {/* ) : (
+        <></>
+      )} */}
     </div>
   );
 };

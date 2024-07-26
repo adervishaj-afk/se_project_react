@@ -21,6 +21,7 @@ import LoginModal from "../ModalWithForm/LoginModal/LoginModal.jsx";
 import { setToken, getToken, removeToken } from "../../utils/token.js";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext.js";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.jsx";
+import EditProfileModal from "../EditProfileModal/EditProfileModal.jsx";
 
 //----------------------------------------------------------------//
 //                        IMPORTS                                 //
@@ -39,34 +40,35 @@ function App() {
   const [temp, setTemp] = useState(0);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userData, setUserData] = useState({ username: "", email: "" });
+  const [profile, setProfile] = useState({ username: "", avatar: "" });
   const navigate = useNavigate();
   const [isLiked, setIsLiked] = useState(false);
 
-  // const handleCardLike = ({ id, isLiked }) => {
-  //   const token = localStorage.getItem("jwt");
-  //   // Check if this card is not currently liked
-  //   !isLiked
-  //     ? // if so, send a request to add the user's id to the card's likes array
-  //       api
-  //         // the first argument is the card's id
-  //         .addCardLike(id, token)
-  //         .then((updatedCard) => {
-  //           setClothingItems((cards) =>
-  //             cards.map((item) => (item._id === id ? updatedCard : item))
-  //           );
-  //         })
-  //         .catch((err) => console.log(err))
-  //     : // if not, send a request to remove the user's id from the card's likes array
-  //       api
-  //         // the first argument is the card's id
-  //         .removeCardLike(id, token)
-  //         .then((updatedCard) => {
-  //           setClothingItems((cards) =>
-  //             cards.map((item) => (item._id === id ? updatedCard : item))
-  //           );
-  //         })
-  //         .catch((err) => console.log(err));
-  // };
+  const handleCardLike = ({ id, isLiked }) => {
+    const token = localStorage.getItem("jwt");
+    // Check if this card is not currently liked
+    !isLiked
+      ? // if so, send a request to add the user's id to the card's likes array
+        api
+          // the first argument is the card's id
+          .addCardLike(id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === id ? updatedCard : item))
+            );
+          })
+          .catch((err) => console.log(err))
+      : // if not, send a request to remove the user's id from the card's likes array
+        api
+          // the first argument is the card's id
+          .removeCardLike(id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === id ? updatedCard : item))
+            );
+          })
+          .catch((err) => console.log(err));
+  };
 
   useEffect(() => {
     const token = getToken();
@@ -118,6 +120,17 @@ function App() {
       .catch(console.error);
   };
 
+  const handleProfileUpdate = ({ username, avatar }) => {
+    if (!username || avatar) {
+      return;
+    }
+    const token = getToken();
+    api
+      .editProfile({username, avatar, token})
+      .then(() => {
+      })
+      .catch(console.error);
+  };
   // const handleUserInfo = () => {
   //   api
   //     .getUserInfo()
@@ -145,6 +158,10 @@ function App() {
   const handleCardClick = (card) => {
     setActiveModal("preview");
     setSelectedCard(card);
+  };
+
+  const handleEditProfile = () => {
+    setActiveModal("edit-profile");
   };
 
   const handleSignUp = () => {
@@ -192,12 +209,12 @@ function App() {
       .catch(console.error);
   }, []);
 
-  const onAddItem = (itemData) => {
+  const onAddItem = ({ name, weather, imageUrl }) => {
     const token = getToken();
     if (!token) return;
 
     api
-      .addItem({ itemData }, token)
+      .addItem({ name, weather, imageUrl, token })
       .then((newItem) => {
         setClothingItems([newItem, ...clothingItems]);
         closeActiveModal();
@@ -275,6 +292,7 @@ function App() {
                       closeActiveModal={closeActiveModal}
                       handleAddClick={handleAddClick}
                       //onCardLike={handleCardLike}
+                      handleEditProfile={handleEditProfile}
                     />
                   </ProtectedRoute>
                 }
@@ -326,6 +344,13 @@ function App() {
               closeActiveModal={closeActiveModal}
               confirmDeleteModal={confirmDeleteModal}
               handleDeleteCard={handleDeleteCard}
+            />
+          )}
+          {activeModal === "edit-profile" && (
+            <EditProfileModal
+              isOpen={activeModal === "edit-profile"}
+              closeActiveModal={closeActiveModal}
+              handleProfileUpdate={handleProfileUpdate}
             />
           )}
         </CurrentTemperatureUnitContext.Provider>

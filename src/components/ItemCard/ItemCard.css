@@ -8,8 +8,18 @@
   border-color: #e9e9e9;
 }
 
-.card__name {
+.card__header {
+  display: flex;
+  flex-direction: row;
+  width: auto;
+  max-width: 110px;
   position: absolute;
+  align-items: center;
+  column-gap: 10px;
+}
+
+.card__name {
+  position: relative;
   top: 15px;
   background-color: #ffffff;
   width: auto;
@@ -17,7 +27,29 @@
   margin: 0;
   border-radius: 4%;
   padding: 2px 12px 2px 12px;
-  text-align: center;
+}
+
+.card__like-button {
+  position: relative;
+  top: 15px;
+  height: 18px;
+  width: 15px;
+  background-image: url(../../assets/like-card-button.svg);
+  border: none;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: transparent;
+}
+
+.card__like-button:hover {
+  cursor: pointer;
+  background-image: url(../../assets/activated-like-button.svg);
+  border: none;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: transparent;
 }
 
 .card__delete-button {
