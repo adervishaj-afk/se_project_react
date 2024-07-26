@@ -14,7 +14,8 @@ const Profile = ({
   userData,
   onCardLike,
   handleEditProfile,
-  handleLogout
+  handleLogout,
+  isLoggedIn,
 }) => {
   //const { username, email } = userData;
   return (
@@ -34,6 +35,7 @@ const Profile = ({
           clothingItems={clothingItems}
           handleAddClick={handleAddClick}
           //onCardLike={onCardLike}
+          isLoggedIn={isLoggedIn}
         />
       </section>
     </div>

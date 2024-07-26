@@ -10,6 +10,7 @@ const ClothesSection = ({
   clothingItems,
   handleAddClick,
   //onCardLike
+  isLoggedIn,
 }) => {
   const currentUser = useContext(CurrentUserContext);
 
@@ -26,21 +27,21 @@ const ClothesSection = ({
         </button>
       </div>
 
-      {/* {currentUser ? ( */}
-      <ul className="clothes-section__items">
-        {clothingItems.map((item, index) => (
-          <ItemCard
-            key={item._id || index}
-            item={item}
-            onCardClick={handleCardClick}
-            handleDeleteCard={handleDeleteCard}
-            //onCardLike={onCardLike}
-          />
-        ))}
-      </ul>
-      {/* ) : (
+      {isLoggedIn ? (
+        <ul className="clothes-section__items">
+          {clothingItems.map((item, index) => (
+            <ItemCard
+              key={item._id || index}
+              item={item}
+              onCardClick={handleCardClick}
+              handleDeleteCard={handleDeleteCard}
+              //onCardLike={onCardLike}
+            />
+          ))}
+        </ul>
+      ) : (
         <></>
-      )} */}
+      )}
     </div>
   );
 };

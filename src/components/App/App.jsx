@@ -88,7 +88,7 @@ function App() {
         navigate("/profile");
       })
       .catch(console.error);
-  }, []);
+  }, [isLoggedIn]);
 
   const handleRegistration = ({ username, avatar, email, password }) => {
     api
@@ -112,7 +112,6 @@ function App() {
       .then((data) => {
         if (data.token) {
           setToken(data.token);
-          setUserData(data.user);
           setIsLoggedIn(true);
           navigate("/profile");
         }
@@ -126,9 +125,8 @@ function App() {
     }
     const token = getToken();
     api
-      .editProfile({username, avatar, token})
-      .then(() => {
-      })
+      .editProfile({ username, avatar, token })
+      .then(() => {})
       .catch(console.error);
   };
   // const handleUserInfo = () => {
@@ -294,6 +292,7 @@ function App() {
                       //onCardLike={handleCardLike}
                       handleEditProfile={handleEditProfile}
                       handleLogout={handleLogout}
+                      isLoggedIn={isLoggedIn}
                     />
                   </ProtectedRoute>
                 }
@@ -336,6 +335,7 @@ function App() {
               onClose={closeActiveModal}
               handleDeleteCard={handleDeleteCard}
               confirmDeleteModal={confirmDeleteModal}
+              isLoggedIn={isLoggedIn}
             />
           )}
           {activeModal === "confirm-delete" && (

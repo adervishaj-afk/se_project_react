@@ -10,6 +10,7 @@ function ItemModal({
   handleDeleteCard,
   confirmDeleteModal,
   isOpen,
+  isLoggedIn,
 }) {
   const currentUser = useContext(CurrentUserContext);
 
@@ -33,8 +34,8 @@ function ItemModal({
         <div className="modal__footer">
           <h2 className="modal__caption">{card.name}</h2>
           <p className="modal__weather">Weather: {card.weather}</p>
-          {/* {currentUser ? (
-            <> */}
+          {isLoggedIn ? (
+            <>
           <button
             type="button"
             onClick={confirmDeleteModal}
@@ -42,10 +43,10 @@ function ItemModal({
           >
             Delete Card
           </button>
-          {/* </>
+          </>
           ) : (
             <></>
-          )} */}
+          )}
         </div>
       </div>
     </div>
