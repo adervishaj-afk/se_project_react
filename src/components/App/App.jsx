@@ -317,6 +317,7 @@ function App() {
               closeActiveModal={closeActiveModal}
               isOpen={activeModal === "sign-up"}
               handleRegistration={handleRegistration}
+              handleSignIn={handleSignIn}
             />
           )}
           {activeModal === "sign-in" && (
@@ -324,6 +325,7 @@ function App() {
               closeActiveModal={closeActiveModal}
               isOpen={activeModal === "sign-in"}
               handleLogin={handleLogin}
+              handleSignUp={handleSignUp}
             />
           )}
           {activeModal === "add-garment" && (

@@ -11,7 +11,7 @@ function Main({
   clothingItems,
   onAddItem,
   handleDeleteCard,
-  //onCardLike
+  onCardLike
 }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   const temp = weatherTemp?.temperature?.[currentTemperatureUnit] || 999;
@@ -36,6 +36,7 @@ function Main({
                 item={item}
                 onCardClick={handleCardClick}
                 handleDeleteCard={handleDeleteCard}
+                onCardLike={onCardLike}
               />
             ))}
         </ul>

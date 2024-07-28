@@ -2,7 +2,12 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import "./LoginModal.css";
 
-const LoginModal = ({ handleLogin, isOpen, closeActiveModal }) => {
+const LoginModal = ({
+  handleLogin,
+  isOpen,
+  closeActiveModal,
+  handleSignUp,
+}) => {
   const [data, setData] = useState({
     username: "",
     password: "",
@@ -59,11 +64,14 @@ const LoginModal = ({ handleLogin, isOpen, closeActiveModal }) => {
         />
         <div>
           <div className="button-container">
-            <button onClick={handleSubmit} className="signin-button" type="submit">
+            <button
+              onClick={handleSubmit}
+              className="signin-button"
+              type="submit"
+            >
               Log in
             </button>
-            <div className="login__signup">
-              {/* requires fixing */}
+            <div onClick={handleSignUp} className="login__signup">
               <button>or Sign Up</button>
             </div>
           </div>

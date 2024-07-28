@@ -2,7 +2,12 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import "./RegisterModal.css";
 
-const RegisterModal = ({ handleRegistration, isOpen, closeActiveModal }) => {
+const RegisterModal = ({
+  handleRegistration,
+  isOpen,
+  handleSignIn,
+  closeActiveModal,
+}) => {
   // The inputs are controlled via a single piece of state: an object
   // object called `data`. This lets us avoid writing separate change
   // handlers for each input.
@@ -98,8 +103,7 @@ const RegisterModal = ({ handleRegistration, isOpen, closeActiveModal }) => {
             </button>
           </div>
           <div className="register__form-signin">
-            {/* requires fixing */}
-            <button onClick={handleSubmit} className="register__login-link">
+            <button onClick={handleSignIn} className="register__login-link">
               or Log in
             </button>
           </div>
