@@ -4,18 +4,17 @@ import ClothesSection from "./ClothesSection/ClothesSection";
 //import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext.js";
 
 const Profile = ({
-  weatherTemp,
-  weatherData,
   clothingItems,
   handleCardClick,
   handleDeleteCard,
-  onAddItem,
   handleAddClick,
-  userData,
   onCardLike,
   handleEditProfile,
   handleLogout,
   isLoggedIn,
+  isLiked,
+  userData
+  
 }) => {
   //const { username, email } = userData;
   return (
@@ -34,8 +33,9 @@ const Profile = ({
           handleDeleteCard={handleDeleteCard}
           clothingItems={clothingItems}
           handleAddClick={handleAddClick}
-          //onCardLike={onCardLike}
           isLoggedIn={isLoggedIn}
+          onCardLike={onCardLike}
+          isLiked={isLiked}
         />
       </section>
     </div>

@@ -39,7 +39,11 @@ function App() {
   const [clothingItems, setClothingItems] = useState([]);
   const [temp, setTemp] = useState(0);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userData, setUserData] = useState({ username: "", email: "" });
+  const [userData, setUserData] = useState({
+    _id: "",
+    username: "",
+    email: "",
+  });
   const [profile, setProfile] = useState({ username: "", avatar: "" });
   const navigate = useNavigate();
   const [isLiked, setIsLiked] = useState(false);
@@ -214,7 +218,7 @@ function App() {
     api
       .addItem({ name, weather, imageUrl, token })
       .then((newItem) => {
-        setClothingItems([newItem, ...clothingItems]);
+        setClothingItems([newItem.data, ...clothingItems]);
         closeActiveModal();
       })
       .catch(console.error);
@@ -270,7 +274,7 @@ function App() {
                     clothingItems={clothingItems}
                     onAddItem={onAddItem}
                     closeActiveModal={closeActiveModal}
-                    //onCardLike={handleCardLike}
+                    onCardLike={handleCardLike}
                   />
                   //</ProtectedRoute>
                 }
@@ -289,10 +293,11 @@ function App() {
                       onAddItem={onAddItem}
                       closeActiveModal={closeActiveModal}
                       handleAddClick={handleAddClick}
-                      //onCardLike={handleCardLike}
                       handleEditProfile={handleEditProfile}
                       handleLogout={handleLogout}
                       isLoggedIn={isLoggedIn}
+                      onCardLike={handleCardLike}
+                      isLiked={isLiked}
                     />
                   </ProtectedRoute>
                 }

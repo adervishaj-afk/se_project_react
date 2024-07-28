@@ -42,8 +42,11 @@
   background-color: transparent;
 }
 
-.card__like-button:hover {
-  cursor: pointer;
+.card__like-button-active {
+  position: relative;
+  top: 15px;
+  height: 18px;
+  width: 15px;
   background-image: url(../../assets/activated-like-button.svg);
   border: none;
   background-size: contain;

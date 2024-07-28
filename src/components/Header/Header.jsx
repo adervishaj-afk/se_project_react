@@ -14,7 +14,8 @@ function Header({
   handleLogout,
   isLoggedIn,
 }) {
-  const currentUser = useContext(CurrentUserContext);
+  const userData = useContext(CurrentUserContext);
+  //debugger;
 
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
@@ -33,7 +34,7 @@ function Header({
       </p>
       <div className="header__add">
         <ToggleSwitch />
-        {isLoggedIn && currentUser ? (
+        {isLoggedIn && userData ? (
           <>
             <button
               onClick={handleAddClick}
@@ -47,10 +48,10 @@ function Header({
             </button>
             <Link to="/profile" className="header__link">
               <div className="header__user-container">
-                <p className="header__username">{currentUser.username}</p>
+                <p className="header__username">{userData.username}</p>
                 <img
                   src={avatar}
-                  alt={currentUser.username}
+                  alt={userData.username}
                   className="header__avatar"
                 />
               </div>
