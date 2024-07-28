@@ -42,20 +42,26 @@ function App() {
   const [userData, setUserData] = useState({
     _id: "",
     username: "",
+    avatar: "",
     email: "",
+    name: "",
   });
   const [profile, setProfile] = useState({ username: "", avatar: "" });
   const navigate = useNavigate();
   const [isLiked, setIsLiked] = useState(false);
 
-  const handleCardLike = ({ id, isLiked }) => {
+  const handleCardLike = (item) => {
     const token = localStorage.getItem("jwt");
     // Check if this card is not currently liked
+
+    const { id } = item._id;
+    const isLiked = item.likes.some((likeId) => likeId === userData._id);
+
     !isLiked
       ? // if so, send a request to add the user's id to the card's likes array
         api
           // the first argument is the card's id
-          .addCardLike(id, token)
+          .addCardLike({ id, token })
           .then((updatedCard) => {
             setClothingItems((cards) =>
               cards.map((item) => (item._id === id ? updatedCard : item))
@@ -65,7 +71,7 @@ function App() {
       : // if not, send a request to remove the user's id from the card's likes array
         api
           // the first argument is the card's id
-          .removeCardLike(id, token)
+          .removeCardLike({ id, token })
           .then((updatedCard) => {
             setClothingItems((cards) =>
               cards.map((item) => (item._id === id ? updatedCard : item))
@@ -84,11 +90,11 @@ function App() {
     // Call the function, passing it the JWT.
     api
       .getUserInfo(token)
-      .then(({ _id, username, email }) => {
+      .then(({ _id, username, name, email, avatar }) => {
         // If the response is successful, log the user in, save their
         // data to state, and navigate them to /profile.
         setIsLoggedIn(true);
-        setUserData({ _id, username, email });
+        setUserData({ _id, username, name, email, avatar });
         navigate("/profile");
       })
       .catch(console.error);
@@ -123,14 +129,14 @@ function App() {
       .catch(console.error);
   };
 
-  const handleProfileUpdate = ({ username, avatar }) => {
-    if (!username || avatar) {
-      return;
-    }
+  const handleProfileUpdate = ({ name, avatar }) => {
     const token = getToken();
     api
-      .editProfile({ username, avatar, token })
-      .then(() => {})
+      .editProfile({ name, avatar, token })
+      .then((data) => {
+        setUserData(data.name, data.avatar);
+        closeActiveModal();
+      })
       .catch(console.error);
   };
   // const handleUserInfo = () => {
@@ -259,6 +265,7 @@ function App() {
               handleSignIn={handleSignIn}
               isLoggedIn={isLoggedIn}
               handleLogout={handleLogout}
+              userData={userData}
             />
             <Routes>
               <Route

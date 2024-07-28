@@ -25,6 +25,7 @@ const Profile = ({
         <SideBar 
         handleEditProfile={handleEditProfile}
         handleLogout={handleLogout}
+        userData={userData}
         />
       </section>
       <section className="profile-clothes">
@@ -36,6 +37,7 @@ const Profile = ({
           isLoggedIn={isLoggedIn}
           onCardLike={onCardLike}
           isLiked={isLiked}
+          userData={userData}
         />
       </section>
     </div>

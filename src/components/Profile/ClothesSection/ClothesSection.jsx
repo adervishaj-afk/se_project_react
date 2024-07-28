@@ -2,7 +2,6 @@ import { defaultClothingItems } from "../../../utils/constants";
 import ItemCard from "../../ItemCard/ItemCard";
 import "./ClothesSection.css";
 import React, { useContext } from "react";
-import { CurrentUserContext } from "../../../contexts/CurrentUserContext";
 
 const ClothesSection = ({
   handleCardClick,
@@ -12,8 +11,8 @@ const ClothesSection = ({
   onCardLike,
   isLoggedIn,
   isLiked,
+  userData,
 }) => {
-  const currentUser = useContext(CurrentUserContext);
 
   return (
     <div className="clothes-section">
@@ -38,6 +37,7 @@ const ClothesSection = ({
               handleDeleteCard={handleDeleteCard}
               onCardLike={onCardLike}
               isLiked={isLiked}
+              userData={userData}
             />
           ))}
         </ul>

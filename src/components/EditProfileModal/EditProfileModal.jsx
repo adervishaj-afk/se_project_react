@@ -7,7 +7,7 @@ const EditProfileModal = ({
   closeActiveModal,
 }) => {
   const [data, setData] = useState({
-    username: "",
+    name: "",
     avatar: "",
   });
 
@@ -34,15 +34,15 @@ const EditProfileModal = ({
           className="edit__form-close-btn"
           type="button"
         ></button>
-        <label htmlFor="username" className="edit-label">
+        <label htmlFor="name" className="edit-label">
           Name *
         </label>
         <input
           id="name"
           required
-          name="username"
+          name="name"
           type="text"
-          value={data.username}
+          value={data.name}
           onChange={handleChange}
           className="edit-input"
           placeholder="Name"

@@ -77,8 +77,8 @@ const getUserInfo = (token) => {
 };
 
 const addCardLike = ({ id, token }) => {
-  return fetch(`${BASE_URL}/items/${id}`, {
-    method: "PATCH",
+  return fetch(`${BASE_URL}/items/${id}/likes}`, {
+    method: "PUT",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
@@ -88,8 +88,8 @@ const addCardLike = ({ id, token }) => {
 };
 
 const removeCardLike = ({ id, token }) => {
-  return fetch(`${BASE_URL}/items/${id}`, {
-    method: "PATCH",
+  return fetch(`${BASE_URL}/items/${id}/likes`, {
+    method: "DELETE",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
@@ -98,7 +98,7 @@ const removeCardLike = ({ id, token }) => {
   }).then(handleServerResponse);
 };
 
-const editProfile = (username, avatar, token) => {
+const editProfile = ({ name, avatar, token }) => {
   return fetch(`${BASE_URL}/users/me`, {
     method: "PATCH",
     headers: {
@@ -106,10 +106,11 @@ const editProfile = (username, avatar, token) => {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
+    body: JSON.stringify({ name, avatar }),
   }).then(handleServerResponse);
-}
+};
 
-export const api = { 
+export const api = {
   getItems,
   addItem,
   removeItem,

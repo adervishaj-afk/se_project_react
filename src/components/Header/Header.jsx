@@ -13,8 +13,9 @@ function Header({
   handleSignIn,
   handleLogout,
   isLoggedIn,
+  userData,
 }) {
-  const userData = useContext(CurrentUserContext);
+  //const userData = useContext(CurrentUserContext);
   //debugger;
 
   const currentDate = new Date().toLocaleString("default", {
@@ -43,15 +44,12 @@ function Header({
             >
               +Add Clothes
             </button>
-            <button onClick={handleLogout} className="header__button">
-              Logout
-            </button>
             <Link to="/profile" className="header__link">
               <div className="header__user-container">
-                <p className="header__username">{userData.username}</p>
+                <p className="header__username">{userData.name}</p>
                 <img
-                  src={avatar}
-                  alt={userData.username}
+                  src={userData.avatar}
+                  alt={userData.name}
                   className="header__avatar"
                 />
               </div>

@@ -12,6 +12,10 @@
 
 .sidebar__avatar {
   margin-right: 16px;
+  height: 56px;
+  width: 56px;
+  background-size: contain;
+  border-radius: 50%;
 }
 
 .sidebar__username {
