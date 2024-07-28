@@ -84,11 +84,11 @@ function App() {
     // Call the function, passing it the JWT.
     api
       .getUserInfo(token)
-      .then(({ username, email }) => {
+      .then(({ _id, username, email }) => {
         // If the response is successful, log the user in, save their
         // data to state, and navigate them to /profile.
         setIsLoggedIn(true);
-        setUserData({ username, email });
+        setUserData({ _id, username, email });
         navigate("/profile");
       })
       .catch(console.error);

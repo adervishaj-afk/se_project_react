@@ -20,6 +20,8 @@ function ItemCard({
   // The likes array should be an array of ids
 
   const userData = useContext(CurrentUserContext);
+  const { id: _id } = userData;
+  //debugger;
   const isLiked = item.likes.some((id) => id === userData._id);
 
   // Create a variable which you then set in `className` for the like button
