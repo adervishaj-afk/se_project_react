@@ -77,7 +77,7 @@ const getUserInfo = (token) => {
 };
 
 const addCardLike = ({ id, token }) => {
-  return fetch(`${BASE_URL}/items/${id}/likes}`, {
+  return fetch(`${BASE_URL}/items/${id}/likes`, {
     method: "PUT",
     headers: {
       Accept: "application/json",

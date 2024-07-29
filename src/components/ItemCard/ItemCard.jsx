@@ -1,15 +1,7 @@
 import "./ItemCard.css";
 import React, { useContext } from "react";
 
-function ItemCard({
-  item,
-  onCardClick,
-  handleDeleteCard,
-  confirmDeleteClick,
-  activeModal,
-  onCardLike,
-  userData,
-}) {
+function ItemCard({ item, onCardClick, onCardLike, isLoggedIn, isLiked }) {
   const handleCardClick = (e) => {
     e.preventDefault();
     onCardClick(item);
@@ -18,8 +10,6 @@ function ItemCard({
   // Check if the item was liked by the current user
   // The likes array should be an array of ids
 
-  const isLiked = item.likes.some((id) => id === userData._id);
-  //console.log("userdata id", userData._id)
 
   // Create a variable which you then set in `className` for the like button
   const itemLikeButtonClassName = isLiked
@@ -28,7 +18,7 @@ function ItemCard({
 
   const handleLikeClick = (e) => {
     e.preventDefault();
-    console.log("handleLikeClick called with:", { id: item._id, isLiked });
+    //console.log("handleLikeClick called with:", { id: item._id, isLiked });
     onCardLike(item);
     //debugger;
   };
@@ -37,10 +27,16 @@ function ItemCard({
     <li className="card">
       <div className="card__header">
         <h2 className="card__name">{item.name}</h2>
-        <button
-          className={itemLikeButtonClassName}
-          onClick={handleLikeClick}
-        ></button>
+        {isLoggedIn ? (
+          <>
+            <button
+              className={itemLikeButtonClassName}
+              onClick={handleLikeClick}
+            ></button>
+          </>
+        ) : (
+          <></>
+        )}
       </div>
       <img
         onClick={handleCardClick}

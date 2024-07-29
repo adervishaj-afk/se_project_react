@@ -13,10 +13,10 @@ const Profile = ({
   handleLogout,
   isLoggedIn,
   isLiked,
-  userData
+  userData,
   
 }) => {
-  //const { username, email } = userData;
+
   return (
     <div className="profile">
       <section className="profile__sidebar">

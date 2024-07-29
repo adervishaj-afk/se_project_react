@@ -46,7 +46,6 @@ function App() {
     email: "",
     name: "",
   });
-  const [profile, setProfile] = useState({ username: "", avatar: "" });
   const navigate = useNavigate();
   const [isLiked, setIsLiked] = useState(false);
 
@@ -54,7 +53,7 @@ function App() {
     const token = localStorage.getItem("jwt");
     // Check if this card is not currently liked
 
-    const { id } = item._id;
+    const id = item._id;
     const isLiked = item.likes.some((likeId) => likeId === userData._id);
 
     !isLiked
@@ -63,8 +62,9 @@ function App() {
           // the first argument is the card's id
           .addCardLike({ id, token })
           .then((updatedCard) => {
+            //debugger;
             setClothingItems((cards) =>
-              cards.map((item) => (item._id === id ? updatedCard : item))
+              cards.map((item) => (item._id === id ? updatedCard.data : item))
             );
           })
           .catch((err) => console.log(err))
@@ -74,7 +74,7 @@ function App() {
           .removeCardLike({ id, token })
           .then((updatedCard) => {
             setClothingItems((cards) =>
-              cards.map((item) => (item._id === id ? updatedCard : item))
+              cards.map((item) => (item._id === id ? updatedCard.data : item))
             );
           })
           .catch((err) => console.log(err));
@@ -282,6 +282,8 @@ function App() {
                     onAddItem={onAddItem}
                     closeActiveModal={closeActiveModal}
                     onCardLike={handleCardLike}
+                    isLiked={isLiked}
+                    isLoggedIn={isLoggedIn}
                   />
                   //</ProtectedRoute>
                 }

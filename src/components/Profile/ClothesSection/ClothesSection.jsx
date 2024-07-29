@@ -14,6 +14,8 @@ const ClothesSection = ({
   userData,
 }) => {
 
+  console.log("isLiked status", isLiked)
+
   return (
     <div className="clothes-section">
       <div className="clothes-section__features">
@@ -38,6 +40,7 @@ const ClothesSection = ({
               onCardLike={onCardLike}
               isLiked={isLiked}
               userData={userData}
+              isLoggedIn={isLoggedIn}
             />
           ))}
         </ul>

@@ -9,9 +9,10 @@ function Main({
   weatherData,
   handleCardClick,
   clothingItems,
-  onAddItem,
+  isLiked,
   handleDeleteCard,
-  onCardLike
+  onCardLike,
+  isLoggedIn
 }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   const temp = weatherTemp?.temperature?.[currentTemperatureUnit] || 999;
@@ -30,13 +31,15 @@ function Main({
                 item.weather &&
                 item.weather.toLowerCase() === weatherData.type.toLowerCase()
             )
-            .map((item) => (
+            .map((item, index) => (
               <ItemCard
-                key={item._id}
+                key={item._id || index}
                 item={item}
                 onCardClick={handleCardClick}
                 handleDeleteCard={handleDeleteCard}
                 onCardLike={onCardLike}
+                isLiked={isLiked}
+                isLoggedIn={isLoggedIn}
               />
             ))}
         </ul>
