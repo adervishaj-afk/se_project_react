@@ -49,12 +49,13 @@ function App() {
   const navigate = useNavigate();
   const [isLiked, setIsLiked] = useState(false);
 
-  const handleCardLike = (item) => {
+  const handleCardLike = (item, isLiked) => {
+    
     const token = localStorage.getItem("jwt");
     // Check if this card is not currently liked
 
     const id = item._id;
-    const isLiked = item.likes.some((likeId) => likeId === userData._id);
+    //const isLiked = item.likes.some((likeId) => likeId === userData._id);
 
     !isLiked
       ? // if so, send a request to add the user's id to the card's likes array
@@ -368,6 +369,7 @@ function App() {
               isOpen={activeModal === "edit-profile"}
               closeActiveModal={closeActiveModal}
               handleProfileUpdate={handleProfileUpdate}
+              //editProfile={handleEditProfile}
             />
           )}
         </CurrentTemperatureUnitContext.Provider>
