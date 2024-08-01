@@ -12,9 +12,6 @@ const ClothesSection = ({
   isLoggedIn,
   isLiked,
 }) => {
-  
-
-  console.log("isLiked status", isLiked)
 
   return (
     <div className="clothes-section">

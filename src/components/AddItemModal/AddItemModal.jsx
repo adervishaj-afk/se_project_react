@@ -96,6 +96,11 @@ const AddItemModal = ({ closeActiveModal, onAddItem, isOpen }) => {
           Cold
         </label>
       </fieldset>
+      <div>
+        <button className="add-button" type="submit">
+          Add Item
+        </button>
+      </div>
     </ModalWithForm>
   );
 };

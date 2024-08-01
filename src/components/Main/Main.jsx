@@ -12,7 +12,7 @@ function Main({
   isLiked,
   handleDeleteCard,
   onCardLike,
-  isLoggedIn
+  isLoggedIn,
 }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   const temp = weatherTemp?.temperature?.[currentTemperatureUnit] || 999;
