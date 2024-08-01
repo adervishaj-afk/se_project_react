@@ -11,8 +11,8 @@ const ClothesSection = ({
   onCardLike,
   isLoggedIn,
   isLiked,
-  userData,
 }) => {
+  
 
   console.log("isLiked status", isLiked)
 
@@ -39,7 +39,6 @@ const ClothesSection = ({
               handleDeleteCard={handleDeleteCard}
               onCardLike={onCardLike}
               isLiked={isLiked}
-              userData={userData}
               isLoggedIn={isLoggedIn}
             />
           ))}

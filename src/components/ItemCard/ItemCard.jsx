@@ -1,16 +1,18 @@
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import "./ItemCard.css";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
-function ItemCard({ item, onCardClick, onCardLike, isLoggedIn, userData }) {
+function ItemCard({ item, onCardClick, onCardLike, isLoggedIn }) {
   const handleCardClick = (e) => {
     e.preventDefault();
     onCardClick(item);
   };
+  
+  const { userData } = React.useContext(CurrentUserContext);
 
   // Check if the item was liked by the current user
   // The likes array should be an array of ids
-  //const userData = React.useContext(CurrentUserContext);
+
   const isLiked = item.likes.some((likeId) => likeId === userData._id);
 
   // Create a variable which you then set in `className` for the like button

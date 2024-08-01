@@ -1,9 +1,10 @@
 import "./SideBar.css";
 import avatar from "../../assets/avatar.svg";
 import React, { useContext } from "react";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-const SideBar = ({ handleEditProfile, handleLogout, userData }) => {
-  //console.log("userdata", userData);
+const SideBar = ({ handleEditProfile, handleLogout }) => {
+  const { userData } = React.useContext(CurrentUserContext);
 
   return (
     <div className="sidebar">
@@ -13,7 +14,7 @@ const SideBar = ({ handleEditProfile, handleLogout, userData }) => {
           src={userData.avatar}
           alt="profile-avatar"
         />
-        <p className="sidebar__username">{userData.name}</p>
+        <p className="sidebar__username">{userData.username}</p>
       </div>
       <button className="sidebar__edit" onClick={handleEditProfile}>
         Change Profile Data

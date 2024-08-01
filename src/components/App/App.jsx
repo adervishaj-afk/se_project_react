@@ -50,12 +50,10 @@ function App() {
   const [isLiked, setIsLiked] = useState(false);
 
   const handleCardLike = (item, isLiked) => {
-    
     const token = localStorage.getItem("jwt");
     // Check if this card is not currently liked
 
     const id = item._id;
-    //const isLiked = item.likes.some((likeId) => likeId === userData._id);
 
     !isLiked
       ? // if so, send a request to add the user's id to the card's likes array
@@ -140,23 +138,15 @@ function App() {
       })
       .catch(console.error);
   };
-  // const handleUserInfo = () => {
-  //   api
-  //     .getUserInfo()
-  //     .then((data) => {
-  //       setIsLoggedIn(true);
-  //       //setUserData({ name: data.username, email: data.email });
-  //       navigate("/profile");
-  //     })
-  //     .then((data) => {
-  //       getUserData(data);
-  //     })
-  //     .catch(console.error);
-  // };
+  const handleUserInfo = () => {
+    api
+      .getUserInfo()
+      .then(({ _id, username, name, email, avatar }) => {
+        setUserData({ _id, username, name, email, avatar });
+      })
 
-  // const getUserData = (data) => {
-  //   api.getUserInfo(data.token);
-  // };
+      .catch(console.error);
+  };
 
   const handleLogout = () => {
     removeToken();
@@ -252,7 +242,7 @@ function App() {
   };
 
   return (
-    <CurrentUserContext.Provider value={userData}>
+    <CurrentUserContext.Provider value={{ userData }}>
       <div className="page">
         <CurrentTemperatureUnitContext.Provider
           value={{ currentTemperatureUnit, handleToggleSwitchChange }}
@@ -265,15 +255,12 @@ function App() {
               handleSignUp={handleSignUp}
               handleSignIn={handleSignIn}
               isLoggedIn={isLoggedIn}
-              handleLogout={handleLogout}
-              userData={userData}
             />
             <Routes>
               <Route
                 exact
                 path="/"
                 element={
-                  //<ProtectedRoute isLoggedIn={isLoggedIn}>
                   <Main
                     weatherTemp={temp}
                     weatherData={weatherData}
@@ -286,7 +273,6 @@ function App() {
                     isLiked={isLiked}
                     isLoggedIn={isLoggedIn}
                   />
-                  //</ProtectedRoute>
                 }
               />
               <Route
@@ -294,7 +280,6 @@ function App() {
                 element={
                   <ProtectedRoute isLoggedIn={isLoggedIn}>
                     <Profile
-                      userData={userData}
                       weatherTemp={temp}
                       weatherData={weatherData}
                       clothingItems={clothingItems}

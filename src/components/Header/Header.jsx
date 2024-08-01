@@ -11,12 +11,9 @@ function Header({
   weatherData,
   handleSignUp,
   handleSignIn,
-  handleLogout,
   isLoggedIn,
-  userData,
 }) {
-  //const userData = useContext(CurrentUserContext);
-  //debugger;
+  const { userData } = React.useContext(CurrentUserContext);
 
   const currentDate = new Date().toLocaleString("default", {
     month: "long",

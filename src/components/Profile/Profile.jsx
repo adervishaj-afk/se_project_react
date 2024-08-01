@@ -1,7 +1,6 @@
 import "./Profile.css";
 import SideBar from "../SideBar/SideBar.jsx";
 import ClothesSection from "./ClothesSection/ClothesSection";
-//import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext.js";
 
 const Profile = ({
   clothingItems,
@@ -13,19 +12,15 @@ const Profile = ({
   handleLogout,
   isLoggedIn,
   isLiked,
-  userData,
-  
 }) => {
-
   return (
     <div className="profile">
       <section className="profile__sidebar">
         {/* <img src="" alt="" /> 
         <p className="profile__name"></p> */}
-        <SideBar 
-        handleEditProfile={handleEditProfile}
-        handleLogout={handleLogout}
-        userData={userData}
+        <SideBar
+          handleEditProfile={handleEditProfile}
+          handleLogout={handleLogout}
         />
       </section>
       <section className="profile-clothes">
@@ -37,7 +32,6 @@ const Profile = ({
           isLoggedIn={isLoggedIn}
           onCardLike={onCardLike}
           isLiked={isLiked}
-          userData={userData}
         />
       </section>
     </div>

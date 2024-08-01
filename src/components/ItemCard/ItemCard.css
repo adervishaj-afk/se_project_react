@@ -33,26 +33,28 @@
   position: relative;
   top: 15px;
   height: 18px;
-  width: 15px;
+  max-width: 15px;
   background-image: url(../../assets/like-card-button.svg);
   border: none;
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
   background-color: transparent;
+  cursor: pointer;
 }
 
 .card__like-button-active {
   position: relative;
   top: 15px;
   height: 18px;
-  width: 15px;
+  max-width: 15px;
   background-image: url(../../assets/activated-like-button.svg);
   border: none;
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
   background-color: transparent;
+  cursor: pointer;
 }
 
 .card__delete-button {
