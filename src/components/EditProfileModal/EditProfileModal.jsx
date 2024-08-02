@@ -33,7 +33,6 @@ const EditProfileModal = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     handleProfileUpdate(data);
-    closeActiveModal();
   };
 
   return (

@@ -132,10 +132,11 @@ function App() {
 
   const handleProfileUpdate = ({ name, avatar }) => {
     const token = getToken();
-    auth
+    api
       .editProfile({ name, avatar, token })
       .then((data) => {
         setUserData(data);
+        closeActiveModal();
         closeActiveModal();
       })
       .catch(console.error);
