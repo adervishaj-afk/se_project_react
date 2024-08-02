@@ -30,26 +30,9 @@ const RegisterModal = ({
     }));
   };
 
-  // const [errors, setErrors] = useState({});
-
-  // const validateForm = () => {
-  //   const newErrors = {};
-  //   if (!data.username) newErrors.username = "Username is required";
-  //   if (!data.avatar) newErrors.avatar = "Avatar URL is required";
-  //   if (!data.email) newErrors.email = "Email is required";
-  //   if (!data.password) newErrors.password = "Password is required";
-  //   return newErrors;
-  // };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    // const validationErrors = validateForm();
-    // if (Object.keys(validationErrors).length > 0) {
-    //   setErrors(validationErrors);
-    //   return;
-    // }
     handleRegistration(data);
-    closeActiveModal();
   };
 
   return (
@@ -122,15 +105,16 @@ const RegisterModal = ({
       ></input>
       <div className="action-buttons">
         <div className="register__form-signup">
-          <button
-            type="submit"
-            className="register__form-signup"
-          >
+          <button type="submit" className="register__form-signup">
             Sign up
           </button>
         </div>
         <div className="register__form-signin">
-          <button onClick={handleSignIn} className="register__login-link">
+          <button
+            onClick={handleSignIn}
+            type="button"
+            className="register__login-link"
+          >
             or Log in
           </button>
         </div>

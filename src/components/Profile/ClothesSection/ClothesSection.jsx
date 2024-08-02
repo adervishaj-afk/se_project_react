@@ -2,6 +2,7 @@ import { defaultClothingItems } from "../../../utils/constants";
 import ItemCard from "../../ItemCard/ItemCard";
 import "./ClothesSection.css";
 import React, { useContext } from "react";
+import { CurrentUserContext } from "../../../contexts/CurrentUserContext"
 
 const ClothesSection = ({
   handleCardClick,
@@ -12,6 +13,8 @@ const ClothesSection = ({
   isLoggedIn,
   isLiked,
 }) => {
+
+  const { userData } = React.useContext(CurrentUserContext);
 
   return (
     <div className="clothes-section">
@@ -28,17 +31,19 @@ const ClothesSection = ({
 
       {isLoggedIn ? (
         <ul className="clothes-section__items">
-          {clothingItems.map((item, index) => (
-            <ItemCard
-              key={item._id || index}
-              item={item}
-              onCardClick={handleCardClick}
-              handleDeleteCard={handleDeleteCard}
-              onCardLike={onCardLike}
-              isLiked={isLiked}
-              isLoggedIn={isLoggedIn}
-            />
-          ))}
+          {clothingItems
+            .filter((item) => item.owner == userData._id)
+            .map((item, index) => (
+              <ItemCard
+                key={item._id || index}
+                item={item}
+                onCardClick={handleCardClick}
+                handleDeleteCard={handleDeleteCard}
+                onCardLike={onCardLike}
+                isLiked={isLiked}
+                isLoggedIn={isLoggedIn}
+              />
+            ))}
         </ul>
       ) : (
         <></>

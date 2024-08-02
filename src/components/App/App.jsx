@@ -22,6 +22,7 @@ import { setToken, getToken, removeToken } from "../../utils/token.js";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext.js";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.jsx";
 import EditProfileModal from "../EditProfileModal/EditProfileModal.jsx";
+import { auth } from "../../utils/auth.js";
 
 //----------------------------------------------------------------//
 //                        IMPORTS                                 //
@@ -100,7 +101,7 @@ function App() {
   }, [isLoggedIn]);
 
   const handleRegistration = ({ username, avatar, email, password }) => {
-    api
+    auth
       .signup(username, avatar, email, password)
       .then(() => {
         //handleLogin({ username: data.username, password: data.password });
@@ -116,12 +117,13 @@ function App() {
       return;
     }
 
-    api
+    auth
       .signin(username, password)
       .then((data) => {
         if (data.token) {
           setToken(data.token);
           setIsLoggedIn(true);
+          closeActiveModal();
           navigate("/profile");
         }
       })
@@ -130,21 +132,12 @@ function App() {
 
   const handleProfileUpdate = ({ name, avatar }) => {
     const token = getToken();
-    api
+    auth
       .editProfile({ name, avatar, token })
       .then((data) => {
-        setUserData(data.name, data.avatar);
+        setUserData(data);
         closeActiveModal();
       })
-      .catch(console.error);
-  };
-  const handleUserInfo = () => {
-    api
-      .getUserInfo()
-      .then(({ _id, username, name, email, avatar }) => {
-        setUserData({ _id, username, name, email, avatar });
-      })
-
       .catch(console.error);
   };
 

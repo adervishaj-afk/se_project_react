@@ -7,7 +7,7 @@ function ItemCard({ item, onCardClick, onCardLike, isLoggedIn }) {
     e.preventDefault();
     onCardClick(item);
   };
-  
+
   const { userData } = React.useContext(CurrentUserContext);
 
   // Check if the item was liked by the current user
@@ -31,15 +31,11 @@ function ItemCard({ item, onCardClick, onCardLike, isLoggedIn }) {
     <li className="card">
       <div className="card__header">
         <h2 className="card__name">{item.name}</h2>
-        {isLoggedIn ? (
-          <>
-            <button
-              className={itemLikeButtonClassName}
-              onClick={handleLikeClick}
-            ></button>
-          </>
-        ) : (
-          <></>
+        {isLoggedIn && (
+          <button
+            className={itemLikeButtonClassName}
+            onClick={handleLikeClick}
+          ></button>
         )}
       </div>
       <img

@@ -37,31 +37,6 @@ const removeItem = (id, token) => {
   }).then(handleServerResponse);
 };
 
-const signup = (name, avatar, email, password) => {
-  return fetch(`${BASE_URL}/signup`, {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ name, avatar, email, password }),
-  }).then(handleServerResponse);
-};
-
-const signin = (email, password) => {
-  // A POST request is sent to /auth/local.
-  return fetch(`${BASE_URL}/signin`, {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    // The parameters are wrapped in an object, converted to a JSON
-    // string, and sent in the body of the request.
-    body: JSON.stringify({ email, password }),
-  }).then(handleServerResponse);
-};
-
 const getUserInfo = (token) => {
   // Send a GET request to /users/me
   return fetch(`${BASE_URL}/users/me`, {
@@ -114,8 +89,6 @@ export const api = {
   getItems,
   addItem,
   removeItem,
-  signup,
-  signin,
   getUserInfo,
   addCardLike,
   removeCardLike,

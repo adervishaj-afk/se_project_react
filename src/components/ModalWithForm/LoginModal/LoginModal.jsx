@@ -25,7 +25,6 @@ const LoginModal = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     handleLogin(data);
-    closeActiveModal();
   };
 
   return (
@@ -64,15 +63,16 @@ const LoginModal = ({
       />
       <div>
         <div className="action-buttons">
-          <button
-            className="signin-button"
-            type="submit"
-          >
+          <button className="signin-button" type="submit">
             Log in
           </button>
-          <div onClick={handleSignUp} className="login__signup">
-            <button>or Sign Up</button>
-          </div>
+          <button
+            onClick={handleSignUp}
+            type="button"
+            className="login__signup"
+          >
+            or Sign Up
+          </button>
         </div>
       </div>
     </ModalWithForm>
