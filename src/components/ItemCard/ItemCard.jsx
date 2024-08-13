@@ -1,6 +1,6 @@
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import "./ItemCard.css";
-import React, { useContext, useEffect, useState } from "react";
+import React from "react";
 
 function ItemCard({ item, onCardClick, onCardLike, isLoggedIn }) {
   const handleCardClick = (e) => {

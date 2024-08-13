@@ -1,9 +1,8 @@
 import "./Header.css";
-import avatar from "../../assets/avatar.svg";
 import logo from "../../assets/logo.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch.jsx";
-import { Link, useNavigate } from "react-router-dom";
-import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+import React from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function Header({

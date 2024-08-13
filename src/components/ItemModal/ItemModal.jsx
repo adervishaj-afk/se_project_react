@@ -1,26 +1,23 @@
 import "./ItemModal.css";
-import { useState } from "react";
-import React, { useContext } from "react";
-import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+// import { useContext } from "react";
+// import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function ItemModal({
   activeModal,
   onClose,
   card,
-  handleDeleteCard,
   confirmDeleteModal,
-  isOpen,
   isLoggedIn,
 }) {
-  const currentUser = useContext(CurrentUserContext);
+  // const currentUser = useContext(CurrentUserContext);
 
   // Checking if the current user is the owner of the current clothing item
-  const isOwn = card.owner === currentUser._id;
+  // const isOwn = card.owner === currentUser._id;
 
   // Creating a variable which you'll then set in `className` for the delete button
-  const itemDeleteButtonClassName = `delete-card ${
-    isOwn ? "delete-card_visible" : "delete-card_hidden"
-  }`;
+  // const itemDeleteButtonClassName = `delete-card ${
+  //   isOwn ? "delete-card_visible" : "delete-card_hidden"
+  // }`;
 
   return (
     <div className={`modal ${activeModal === "preview" && "modal_opened"}`}>
@@ -36,14 +33,14 @@ function ItemModal({
           <p className="modal__weather">Weather: {card.weather}</p>
           {isLoggedIn ? (
             <>
-          <button
-            type="button"
-            onClick={confirmDeleteModal}
-            className="delete-card" //itemDeleteButtonClassName
-          >
-            Delete Card
-          </button>
-          </>
+              <button
+                type="button"
+                onClick={confirmDeleteModal}
+                className="delete-card" //itemDeleteButtonClassName
+              >
+                Delete Card
+              </button>
+            </>
           ) : (
             <></>
           )}

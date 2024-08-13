@@ -1,8 +1,7 @@
-import { defaultClothingItems } from "../../../utils/constants";
 import ItemCard from "../../ItemCard/ItemCard";
 import "./ClothesSection.css";
-import React, { useContext } from "react";
-import { CurrentUserContext } from "../../../contexts/CurrentUserContext"
+import React from "react";
+import { CurrentUserContext } from "../../../contexts/CurrentUserContext";
 
 const ClothesSection = ({
   handleCardClick,
@@ -13,7 +12,6 @@ const ClothesSection = ({
   isLoggedIn,
   isLiked,
 }) => {
-
   const { userData } = React.useContext(CurrentUserContext);
 
   return (

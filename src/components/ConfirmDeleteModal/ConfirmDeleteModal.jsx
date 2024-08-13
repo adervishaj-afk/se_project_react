@@ -3,9 +3,7 @@ import "./ConfirmDeleteModal.css";
 function ConfirmDeleteModal({
   closeActiveModal,
   isOpen,
-  onSubmit,
   handleDeleteCard,
-  confirmDeleteModal,
   card,
 }) {
   const deleteCard = (e) => {

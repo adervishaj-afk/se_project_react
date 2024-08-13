@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 const CurrentUserContext = React.createContext({
   userData: { _id: "", username: "", avatar: "", email: "", name: "" },
